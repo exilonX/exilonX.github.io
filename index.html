@@ -43,16 +43,16 @@
     }
     
     #menudiv {
-    	max-width: 100px;
-    	height: 900px;
-    	color: red;
+    	max-width: 200px;
     }
     
   </style>
   <div id="menudiv">
   
   <input id="stopforce" type="button" value="StopForceAtlas"/>
+  <input id="next" type = "button" value="Next"/>
   </div>
+  
   <div id="graph-container"></div>
 </div>
 <script>
@@ -75,37 +75,70 @@
 		defaultNodeColor: '#ec5148'
    	}
    });
+	
+	function loadGraf(filename) {
+		// first you load a json with (important!) s parameter to refer to the sigma instance   
+		var i = 0;
+		sigma.parsers.json(
+			filename,
+			s,
+			function() {
+				// this below adds x, y attributes as well as size = degree of the node 
+				var i,
+				        nodes = s.graph.nodes(),
+				        len = nodes.length;
 
-   // first you load a json with (important!) s parameter to refer to the sigma instance   
-   var i = 0;
-   sigma.parsers.json(
-        'jsonfile/TOT_9_77.json',
-        s,
-        function() {
-            // this below adds x, y attributes as well as size = degree of the node 
-            var i,
-                    nodes = s.graph.nodes(),
-                    len = nodes.length;
+				for (i = 0; i < len; i++) {
+				    nodes[i].x = Math.random();
+				    nodes[i].y = Math.random();
+				    nodes[i].size = s.graph.degree(nodes[i].id);
+				    nodes[i].color = nodes[i].center ? '#ec5148' : '#ec5145';
+				}
 
-            for (i = 0; i < len; i++) {
-                nodes[i].x = Math.random();
-                nodes[i].y = Math.random();
-                nodes[i].size = s.graph.degree(nodes[i].id);
-                nodes[i].color = nodes[i].center ? '#333' : '#666';
-            }
-
-            // Refresh the display:
-            s.refresh();
-            // ForceAtlas Layout
-            s.startForceAtlas2();
-        }
-   );
+				// Refresh the display:
+				s.refresh();
+				// ForceAtlas Layout
+				s.startForceAtlas2();
+			}
+		);
+	}
    
-   function stopForce() {
+   
+   
+   var files = {"files": [
+		{ "filename":"jsonfile/TOT_0_787.json"},
+		{ "filename":"jsonfile/TOT_1_206.json"},
+		{ "filename":"jsonfile/TOT_2_148.json"},
+		{ "filename":"jsonfile/TOT_3_133.json"},
+		{ "filename":"jsonfile/TOT_4_128.json"},
+		{ "filename":"jsonfile/TOT_5_110.json"},
+		{ "filename":"jsonfile/TOT_6_96.json"},
+		{ "filename":"jsonfile/TOT_7_84.json"},
+		{ "filename":"jsonfile/TOT_8_79.json"},
+		{ "filename":"jsonfile/TOT_9_77.json"}]};
+		
+	loadGraf(files['files'][0]['filename']);
+	
+	console.log(files['files'][0]['filename']);
+	var maxLen = files['files'].length;
+	var curent = 0;
+   
+	function stopForce() {
+		s.stopForceAtlas2();
+	}
+   	
+   	function nextGraf() {
+   		curent = curent > maxLen ? 0 : curent+1;
    		s.stopForceAtlas2();
-   }
-   
-   var buton = document.getElementById("stopforce");
-   buton.addEventListener("click", stopForce, false);
+   		filename = files['files'][curent]['filename'];
+   		console.log(filename);
+   		loadGraf(filename);
+   	}
+   	
+	var buton = document.getElementById("stopforce");
+	buton.addEventListener("click", stopForce, false);
+
+	var next = document.getElementById("next");
+   	next.addEventListener("click", nextGraf, false);
    
 </script>
