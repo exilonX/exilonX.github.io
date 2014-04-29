@@ -116,19 +116,19 @@
 		{ "filename":"jsonfile/TOT_7_84.json"},
 		{ "filename":"jsonfile/TOT_8_79.json"},
 		{ "filename":"jsonfile/TOT_9_77.json"}]};
-		
+	
 	loadGraf(files['files'][0]['filename']);
 	
 	console.log(files['files'][0]['filename']);
 	var maxLen = files['files'].length;
 	var curent = 0;
-   
+
 	function stopForce() {
 		s.stopForceAtlas2();
 	}
    	
    	function nextGraf() {
-   		curent = curent > maxLen ? 0 : curent+1;
+   		curent = curent >= maxLen ? 0 : curent+1;
    		s.stopForceAtlas2();
    		filename = files['files'][curent]['filename'];
    		console.log(filename);
