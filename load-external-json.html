@@ -1,5 +1,4 @@
 <!-- START SIGMA IMPORTS -->
-<meta charset="utf-8"> 
 <script src="sigma.js-master/src/sigma.core.js"></script>
 <script src="sigma.js-master/src/conrad.js"></script>
 <script src="sigma.js-master/src/utils/sigma.utils.js"></script>
@@ -41,13 +40,6 @@
 		height: 900px;
 		margin: auto;
     }
-    
-    #menudiv {
-    	max-width: 100px;
-    	height: 900px;
-    	color: red;
-    }
-    
   </style>
   <div id="menudiv">
   
@@ -70,16 +62,16 @@
     container: document.getElementById('graph-container'),
     type: 'canvas'
    },
-   	settings: {
+   settings: {
     
-		defaultNodeColor: '#ec5148'
-   	}
+	defaultNodeColor: '#ec5148'
+   }
    });
 
    // first you load a json with (important!) s parameter to refer to the sigma instance   
    var i = 0;
    sigma.parsers.json(
-        'jsonfile/TOT_9_77.json',
+        'jsonfile/TOT_0_787.json',
         s,
         function() {
             // this below adds x, y attributes as well as size = degree of the node 
