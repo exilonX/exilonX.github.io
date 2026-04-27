@@ -1,0 +1,5 @@
+<svg viewBox="0 0 150 50" xmlns="http://www.w3.org/2000/svg">
+  <text x="10" y="38" font-family="Arial, sans-serif" font-size="36" font-weight="700" fill="#D13239">Przelewy</text>
+  <rect x="110" y="8" width="34" height="34" rx="4" fill="#D13239"/>
+  <text x="127" y="34" font-family="Arial, sans-serif" font-size="22" font-weight="900" fill="white" text-anchor="middle">24</text>
+</svg>
