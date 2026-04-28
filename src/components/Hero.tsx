@@ -93,7 +93,7 @@ export function Hero() {
         {/* CTAs */}
         <div className="flex flex-wrap items-center justify-center gap-4 mb-16">
           <a
-            href="#projects"
+            href="/#projects"
             className="px-7 py-3.5 bg-primary text-white font-semibold rounded-xl shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:scale-105 transition-all"
           >
             {tr.hero.cta}

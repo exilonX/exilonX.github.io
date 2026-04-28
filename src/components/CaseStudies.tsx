@@ -58,7 +58,7 @@ export function CaseStudies() {
           {caseStudies.map((cs) => (
             <a
               key={cs.slug}
-              href={`#/case-study/${cs.slug}`}
+              href={`/case-study/${cs.slug}`}
               className="glass-card rounded-xl p-6 relative overflow-hidden flex flex-col group transition-colors hover:border-primary/50"
             >
               <div

@@ -2,16 +2,230 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ionel Merca — Software Engineer</title>
-    <meta name="description" content="Software Engineer specializing in payment systems, digital identity, and government-grade platforms. 10+ years of experience building secure, production systems across Europe." />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Primary meta -->
+    <title>Ionel Merca — Backend Engineer · Node.js Microservices, Distributed Systems</title>
+    <meta name="description" content="Senior backend engineer in Bucharest, Romania. Node.js microservices and distributed systems — 10 years shipping production across payments, identity, IoT, and government. Available for contract work." />
+    <meta name="author" content="Ionel Merca" />
+    <meta name="keywords" content="Ionel Merca, backend engineer, Node.js engineer, NestJS developer, microservices engineer, distributed systems engineer, Kafka engineer, system design engineer, API design, software engineer Bucharest, freelance software engineer Romania, contract backend engineer Europe, senior backend engineer remote, event-driven systems, scalable backend systems, payment systems engineer, VTEX developer, Adyen integration, marketplace split payments, Romanian eID developer, PACE protocol, eIDAS QES, MRTD, NFC cryptography, IoT MQTT engineer" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="googlebot" content="index, follow" />
+
+    <!-- Canonical + language alternates -->
+    <link rel="canonical" href="https://exilonx.github.io/" />
+    <link rel="alternate" hreflang="en" href="https://exilonx.github.io/?lang=en" />
+    <link rel="alternate" hreflang="ro" href="https://exilonx.github.io/?lang=ro" />
+    <link rel="alternate" hreflang="x-default" href="https://exilonx.github.io/" />
+
+    <!-- Open Graph (LinkedIn, Facebook, Slack, etc.) -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Ionel Merca" />
+    <meta property="og:title" content="Ionel Merca — Backend Engineer · Node.js Microservices, Distributed Systems" />
+    <meta property="og:description" content="10 years building Node.js microservices and distributed systems — payments, identity, IoT, government. Bucharest, Romania. Available for contract work." />
+    <meta property="og:url" content="https://exilonx.github.io/" />
+    <meta property="og:image" content="https://exilonx.github.io/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Ionel Merca — backend engineer portfolio" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="ro_RO" />
+    <meta property="profile:first_name" content="Ionel" />
+    <meta property="profile:last_name" content="Merca" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ionel Merca — Backend Engineer · Node.js Microservices, Distributed Systems" />
+    <meta name="twitter:description" content="10 years building Node.js microservices and distributed systems — payments, identity, IoT, government. Bucharest, Romania. Available for contract work." />
+    <meta name="twitter:image" content="https://exilonx.github.io/og-image.png" />
+
+    <!-- Theme -->
+    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="color-scheme" content="dark light" />
+
+    <!-- Fonts: Inter is self-hosted via @fontsource-variable/inter, imported in main.tsx -->
+
+    <!-- SPA redirect decoder: companion to public/404.html. Restores deep-link URLs after GitHub Pages
+         404→index redirect, so https://exilonx.github.io/case-study/foo loads cleanly. -->
+    <script>
+      (function (l) {
+        if (l.search[1] === "/") {
+          var decoded = l.search
+            .slice(1)
+            .split("&")
+            .map(function (s) { return s.replace(/~and~/g, "&"); })
+            .join("?");
+          window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
+        }
+      })(window.location);
+    </script>
+
+<!-- Structured data: Person -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Ionel Merca",
+      "alternateName": ["Merca Ionel", "exilonX"],
+      "url": "https://exilonx.github.io/",
+      "image": "https://exilonx.github.io/og-image.png",
+      "email": "ionel.merca@gmail.com",
+      "telephone": "+40-730-197-176",
+      "jobTitle": "Backend Software Engineer",
+      "description": "Senior backend engineer with 10 years of experience building Node.js microservices and distributed systems. Domain-agnostic: shipped production work across payments, digital identity, IoT, and government. Available for freelance contract work.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bucharest",
+        "addressRegion": "Bucharest",
+        "addressCountry": "RO"
+      },
+      "nationality": {
+        "@type": "Country",
+        "name": "Romania"
+      },
+      "knowsLanguage": [
+        { "@type": "Language", "name": "English", "alternateName": "en" },
+        { "@type": "Language", "name": "Romanian", "alternateName": "ro" }
+      ],
+      "knowsAbout": [
+        "Backend Engineering",
+        "Node.js",
+        "TypeScript",
+        "NestJS",
+        "Microservice Architecture",
+        "Distributed Systems",
+        "Event-Driven Architecture",
+        "Kafka",
+        "Kubernetes",
+        "API Design",
+        "System Design",
+        "Production Systems Engineering",
+        "Scalability Engineering",
+        "Python",
+        "Java",
+        "C# / .NET",
+        "Payment Systems Engineering",
+        "VTEX Platform",
+        "Adyen API",
+        "Marketplace Split Payments",
+        "Digital Identity",
+        "eID / eIDAS",
+        "Cryptographic Protocols",
+        "PACE Protocol",
+        "ECDH",
+        "AES-CMAC Secure Messaging",
+        "MRTD / NFC Smartcards",
+        "Qualified Electronic Signatures (QES)",
+        "EU DSS",
+        "Government Platforms",
+        "Compliance Engineering",
+        "IoT / MQTT",
+        "MCP Protocol"
+      ],
+      "hasOccupation": {
+        "@type": "Occupation",
+        "name": "Backend Software Engineer",
+        "occupationalCategory": "15-1252.00",
+        "skills": "Payment systems, cryptographic protocols, microservices, identity verification, compliance",
+        "occupationLocation": {
+          "@type": "City",
+          "name": "Bucharest"
+        }
+      },
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Politehnica University of Bucharest",
+        "department": "Faculty of Automatic Control and Computers",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Bucharest",
+          "addressCountry": "RO"
+        }
+      },
+      "sameAs": [
+        "https://github.com/exilonX"
+      ]
+    }
+    </script>
+
+    <!-- Structured data: ProfessionalService (for freelance availability + service signal) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Ionel Merca — Freelance Backend Engineering",
+      "url": "https://exilonx.github.io/",
+      "image": "https://exilonx.github.io/og-image.png",
+      "description": "Contract backend engineering — Node.js microservices, distributed systems, and event-driven architectures. Ten years across payments, identity, IoT, and government. End-to-end ownership preferred.",
+      "provider": {
+        "@type": "Person",
+        "name": "Ionel Merca",
+        "url": "https://exilonx.github.io/"
+      },
+      "areaServed": [
+        { "@type": "Country", "name": "Romania" },
+        { "@type": "Country", "name": "Germany" },
+        { "@type": "Country", "name": "France" },
+        { "@type": "Country", "name": "Poland" },
+        { "@type": "Country", "name": "Bulgaria" },
+        { "@type": "Place", "name": "European Union" }
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bucharest",
+        "addressCountry": "RO"
+      },
+      "serviceType": [
+        "Node.js Backend Development",
+        "Microservice Architecture",
+        "Distributed Systems Engineering",
+        "Event-Driven Architecture",
+        "API Design and Implementation",
+        "Backend System Design",
+        "Cloud-Native Backend Development",
+        "Payment Systems Engineering",
+        "VTEX Payment Connectors",
+        "Marketplace Split Payments",
+        "Digital Identity / eID Engineering",
+        "Cryptographic Protocol Implementation",
+        "IoT Backend Systems",
+        "Government Platform Engineering",
+        "Compliance Systems"
+      ],
+      "openingHours": "Mo-Fr 09:00-18:00",
+      "priceRange": "$$$"
+    }
+    </script>
+
+    <!-- Structured data: WebSite (for sitelinks search box, brand recognition) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Ionel Merca — Portfolio",
+      "url": "https://exilonx.github.io/",
+      "inLanguage": ["en", "ro"],
+      "author": {
+        "@type": "Person",
+        "name": "Ionel Merca",
+        "url": "https://exilonx.github.io/"
+      }
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <div style="padding: 2rem; font-family: system-ui, sans-serif; max-width: 720px; margin: 0 auto;">
+        <h1>Ionel Merca — Backend Software Engineer</h1>
+        <p>Senior backend engineer building Node.js microservices and distributed systems. 10 years of production work across payments, digital identity, IoT, and government.</p>
+        <p>Bucharest, Romania. Available for contract work.</p>
+        <p>Contact: <a href="mailto:ionel.merca@gmail.com">ionel.merca@gmail.com</a> · <a href="https://github.com/exilonX">GitHub: exilonX</a></p>
+        <p><em>This portfolio requires JavaScript to render the interactive version. The full content is available with JS enabled.</em></p>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -5,6 +5,65 @@ import { Footer } from "../components/Footer";
 export function CaseStudyCryptobot() {
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    const url = "https://exilonx.github.io/case-study/cryptobot";
+    const title = "cryptobot — Case Study · Ionel Merca";
+    const description =
+      "Personal exploration of systematic crypto trading on Binance — orchestrated execution framework with 16 strategies, Redis-backed backtesting, and an honest read on the results.";
+
+    const previousTitle = document.title;
+    const descMeta = document.querySelector('meta[name="description"]');
+    const previousDesc = descMeta?.getAttribute("content") ?? "";
+
+    document.title = title;
+    descMeta?.setAttribute("content", description);
+
+    // Canonical link
+    const canonical = document.createElement("link");
+    canonical.id = "case-study-canonical";
+    canonical.setAttribute("rel", "canonical");
+    canonical.setAttribute("href", url);
+    document.head.appendChild(canonical);
+
+    // TechArticle structured data
+    const schema = document.createElement("script");
+    schema.id = "case-study-schema";
+    schema.type = "application/ld+json";
+    schema.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      headline: "cryptobot — orchestrated crypto-trading framework",
+      alternativeHeadline:
+        "An orchestrator pattern with 16 pluggable strategies, Redis-backed backtesting, and a research-grade honest read on results",
+      description,
+      author: { "@type": "Person", name: "Ionel Merca", url: "https://exilonx.github.io/" },
+      publisher: { "@type": "Person", name: "Ionel Merca", url: "https://exilonx.github.io/" },
+      datePublished: "2022-02-01",
+      dateModified: "2026-04-24",
+      mainEntityOfPage: url,
+      inLanguage: "en",
+      keywords: [
+        "algorithmic trading",
+        "crypto trading bot",
+        "Binance",
+        "orchestrator pattern",
+        "backtesting",
+        "MACD strategy",
+        "SAR strategy",
+        "Python trading framework",
+        "Redis OHLCV",
+        "strategy interface",
+      ],
+      codeRepository: "https://github.com/exilonX/cryptobot",
+    });
+    document.head.appendChild(schema);
+
+    return () => {
+      document.title = previousTitle;
+      if (descMeta) descMeta.setAttribute("content", previousDesc);
+      document.getElementById("case-study-canonical")?.remove();
+      document.getElementById("case-study-schema")?.remove();
+    };
   }, []);
 
   return (
@@ -12,7 +71,7 @@ export function CaseStudyCryptobot() {
       <Nav />
 
       <article className="max-w-4xl mx-auto px-6 pt-28 pb-16">
-        <a href="#" className="text-sm text-primary hover:underline">
+        <a href="/" className="text-sm text-primary hover:underline">
           &larr; Back to portfolio
         </a>
 
@@ -206,7 +265,7 @@ export function CaseStudyCryptobot() {
         </section>
 
         <div className="mt-16 pt-8 border-t border-border">
-          <a href="#" className="text-sm text-primary hover:underline">
+          <a href="/" className="text-sm text-primary hover:underline">
             &larr; Back to portfolio
           </a>
         </div>

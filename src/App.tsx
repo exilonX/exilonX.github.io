@@ -16,7 +16,7 @@ type Route =
   | { type: "case-study"; slug: string };
 
 function getRoute(): Route {
-  const match = window.location.hash.match(/^#\/case-study\/(.+)$/);
+  const match = window.location.pathname.match(/^\/case-study\/([^/]+)\/?$/);
   if (match) return { type: "case-study", slug: match[1] };
   return { type: "home" };
 }
@@ -24,10 +24,69 @@ function getRoute(): Route {
 function App() {
   const [route, setRoute] = useState<Route>(getRoute);
 
+  // Listen for back/forward navigation
   useEffect(() => {
-    const handler = () => setRoute(getRoute());
-    window.addEventListener("hashchange", handler);
-    return () => window.removeEventListener("hashchange", handler);
+    const onPop = () => setRoute(getRoute());
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
+
+  // Click interceptor: keep internal navigation client-side
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      // Only intercept plain left-clicks without modifier keys
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
+      const anchor = (e.target as HTMLElement | null)?.closest("a");
+      if (!anchor) return;
+
+      // Skip explicit external/new-tab/download links
+      if (anchor.target === "_blank" || anchor.hasAttribute("download")) return;
+
+      const href = anchor.getAttribute("href");
+      if (!href) return;
+
+      // Skip protocol-bound links (mailto:, tel:, http(s)://)
+      if (/^(mailto:|tel:|https?:|\/\/)/i.test(href)) return;
+
+      // In-page anchor only (no path change)
+      if (href.startsWith("#")) return;
+
+      let url: URL;
+      try {
+        url = new URL(href, window.location.origin);
+      } catch {
+        return;
+      }
+
+      // External origin — let the browser handle
+      if (url.origin !== window.location.origin) return;
+
+      e.preventDefault();
+
+      const samePath = url.pathname === window.location.pathname;
+      window.history.pushState({}, "", url.toString());
+
+      if (!samePath) {
+        setRoute(getRoute());
+      }
+
+      // Handle scroll: hash → scroll to id (after render); no hash → top
+      if (url.hash) {
+        const id = url.hash.slice(1);
+        // requestAnimationFrame ensures the new route is mounted before we look for the element
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+          });
+        });
+      } else if (!samePath) {
+        window.scrollTo(0, 0);
+      }
+    };
+
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
   }, []);
 
   if (route.type === "case-study") {

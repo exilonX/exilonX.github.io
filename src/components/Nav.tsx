@@ -33,10 +33,10 @@ export function Nav() {
   const tr = t(lang);
 
   const links = [
-    { label: tr.nav.experience, href: "#experience" },
-    { label: tr.nav.projects, href: "#projects" },
-    { label: tr.nav.skills, href: "#skills" },
-    { label: tr.nav.contact, href: "#contact" },
+    { label: tr.nav.experience, href: "/#experience" },
+    { label: tr.nav.projects, href: "/#projects" },
+    { label: tr.nav.skills, href: "/#skills" },
+    { label: tr.nav.contact, href: "/#contact" },
   ];
 
   useEffect(() => {

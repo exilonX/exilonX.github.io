@@ -5,6 +5,64 @@ import { Footer } from "../components/Footer";
 export function CaseStudyDiploma() {
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    const url = "https://exilonx.github.io/case-study/diploma-project";
+    const title = "The Graph of Romanian Businessmen — Case Study · Ionel Merca";
+    const description =
+      "Bachelor's diploma project: extraction, analysis, and visualisation of Romania's business-ownership network. From 6.8 GB of Official Gazette PDFs to a searchable graph of ~370,000 people.";
+
+    const previousTitle = document.title;
+    const descMeta = document.querySelector('meta[name="description"]');
+    const previousDesc = descMeta?.getAttribute("content") ?? "";
+
+    document.title = title;
+    descMeta?.setAttribute("content", description);
+
+    // Canonical link
+    const canonical = document.createElement("link");
+    canonical.id = "case-study-canonical";
+    canonical.setAttribute("rel", "canonical");
+    canonical.setAttribute("href", url);
+    document.head.appendChild(canonical);
+
+    // TechArticle structured data
+    const schema = document.createElement("script");
+    schema.id = "case-study-schema";
+    schema.type = "application/ld+json";
+    schema.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      headline: "The Graph of Romanian Businessmen",
+      alternativeHeadline: "Extraction, analysis, and visualisation of Romania's business-ownership network",
+      description,
+      author: { "@type": "Person", name: "Ionel Merca", url: "https://exilonx.github.io/" },
+      publisher: { "@type": "Person", name: "Ionel Merca", url: "https://exilonx.github.io/" },
+      datePublished: "2014-06-01",
+      dateModified: "2026-04-22",
+      mainEntityOfPage: url,
+      inLanguage: "en",
+      keywords: [
+        "graph analysis",
+        "information extraction",
+        "Neo4j",
+        "MongoDB",
+        "Apache PDFBox",
+        "Apache Solr",
+        "Gephi",
+        "SigmaJS",
+        "social network metrics",
+        "betweenness centrality",
+        "Romanian businessmen graph",
+      ],
+    });
+    document.head.appendChild(schema);
+
+    return () => {
+      document.title = previousTitle;
+      if (descMeta) descMeta.setAttribute("content", previousDesc);
+      document.getElementById("case-study-canonical")?.remove();
+      document.getElementById("case-study-schema")?.remove();
+    };
   }, []);
 
   return (
@@ -12,7 +70,7 @@ export function CaseStudyDiploma() {
       <Nav />
 
       <article className="max-w-4xl mx-auto px-6 pt-28 pb-16">
-        <a href="#" className="text-sm text-primary hover:underline">
+        <a href="/" className="text-sm text-primary hover:underline">
           &larr; Back to portfolio
         </a>
 
@@ -221,7 +279,7 @@ export function CaseStudyDiploma() {
         </section>
 
         <div className="mt-16 pt-8 border-t border-border">
-          <a href="#" className="text-sm text-primary hover:underline">
+          <a href="/" className="text-sm text-primary hover:underline">
             &larr; Back to portfolio
           </a>
         </div>

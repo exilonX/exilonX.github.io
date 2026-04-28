@@ -67,7 +67,7 @@ function ProjectCard({ project, lang, featured = false }: { project: Project; la
           <div className="ml-auto flex items-center gap-3">
             {project.caseStudySlug && (
               <a
-                href={`#/case-study/${project.caseStudySlug}`}
+                href={`/case-study/${project.caseStudySlug}`}
                 className="text-xs text-primary hover:underline"
               >
                 Case study &rarr;

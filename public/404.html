@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Ionel Merca</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <script>
+      // SPA redirect for GitHub Pages.
+      // When someone hits /case-study/diploma-project directly, GitHub serves this 404.
+      // We rewrite the URL so the SPA can handle it client-side from the index page.
+      // Companion script in index.html restores the original path after the SPA loads.
+      (function () {
+        var pathSegmentsToKeep = 0; // 0 for user-pages root domain
+        var l = window.location;
+        l.replace(
+          l.protocol +
+            "//" +
+            l.hostname +
+            (l.port ? ":" + l.port : "") +
+            l.pathname.split("/").slice(0, 1 + pathSegmentsToKeep).join("/") +
+            "/?/" +
+            l.pathname.slice(1).split("/").slice(pathSegmentsToKeep).join("/").replace(/&/g, "~and~") +
+            (l.search ? "&" + l.search.slice(1).replace(/&/g, "~and~") : "") +
+            l.hash
+        );
+      })();
+    </script>
+  </head>
+  <body>
+    <p style="font-family: system-ui, sans-serif; padding: 2rem;">Loading…</p>
+  </body>
+</html>

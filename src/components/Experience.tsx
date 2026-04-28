@@ -130,7 +130,7 @@ export function Experience() {
 
                   {exp.caseStudy && (
                     <a
-                      href={`#/case-study/${exp.caseStudy.slug}`}
+                      href={`/case-study/${exp.caseStudy.slug}`}
                       className="inline-flex items-center gap-1 text-xs font-medium text-primary hover:underline mb-4"
                     >
                       &rarr; {lang === "en" ? exp.caseStudy.labelEn : exp.caseStudy.labelRo}
