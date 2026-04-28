@@ -29,6 +29,7 @@ const translations = {
       label: 'Career',
       title: 'Experience',
       subtitle: 'A decade across payments, identity, and government systems.',
+      educationLabel: 'Education',
     },
     competencies: {
       cryptoTitle: 'Cryptographic Protocols',
@@ -135,6 +136,7 @@ const translations = {
       label: 'Cariera',
       title: 'Experienta',
       subtitle: 'Un deceniu in plati, identitate si sisteme guvernamentale.',
+      educationLabel: 'Studii',
     },
     competencies: {
       cryptoTitle: 'Protocoale Criptografice',

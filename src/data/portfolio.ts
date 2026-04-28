@@ -100,11 +100,11 @@ export const experiences: Experience[] = [
     period: "2017 — 2018",
     location: "Bucharest, Romania",
     descriptionEn: [
-      "Masters in Artificial Intelligence — Computer Vision, Data Mining, Knowledge Representation",
-      "Built NLP recommendation system for matching project descriptions to relevant documentation",
+      "NLP research and AI coursework at Politehnica Bucharest — Computer Vision, Data Mining, Knowledge Representation",
+      "Built an NLP recommendation system matching project descriptions to relevant documentation",
     ],
     descriptionRo: [
-      "Master in Inteligenta Artificiala — Computer Vision, Data Mining, Reprezentarea Cunostintelor",
+      "Cercetare NLP si cursuri AI la Politehnica Bucuresti — Computer Vision, Data Mining, Reprezentarea Cunostintelor",
       "Am construit un sistem NLP de recomandare pentru potrivirea descrierilor de proiecte cu documentatia relevanta",
     ],
     tech: ["Python", "Java", "NLP", "Machine Learning"],
@@ -452,6 +452,26 @@ export const projects: Project[] = [
     color: "#22d3ee",
     link: "https://github.com/exilonX/cryptobot",
     caseStudySlug: "cryptobot",
+  },
+];
+
+export interface Education {
+  degreeEn: string;
+  degreeRo: string;
+  institutionEn: string;
+  institutionRo: string;
+  period: string;
+  location: string;
+}
+
+export const education: Education[] = [
+  {
+    degreeEn: "BSc Computer Science Engineering",
+    degreeRo: "Diploma de Inginer · Calculatoare si Tehnologia Informatiei",
+    institutionEn: "Politehnica University of Bucharest · Faculty of Automatic Control and Computers",
+    institutionRo: "Universitatea Politehnica Bucuresti · Facultatea de Automatica si Calculatoare",
+    period: "2010 — 2014",
+    location: "Bucharest, Romania",
   },
 ];
 

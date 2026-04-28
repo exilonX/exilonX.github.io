@@ -1,6 +1,6 @@
 import { useApp } from "../context";
 import { t } from "../i18n";
-import { experiences } from "../data/portfolio";
+import { experiences, education } from "../data/portfolio";
 import { useFadeIn } from "../hooks/useFadeIn";
 
 const competencyIcons = {
@@ -144,6 +144,30 @@ export function Experience() {
                       </span>
                     ))}
                   </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Education */}
+        <div className="mt-16">
+          <div className="section-label">{tr.experience.educationLabel}</div>
+          <div className="space-y-4 mt-3">
+            {education.map((ed, i) => (
+              <div key={i} className="glass-card rounded-xl p-6">
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-1">
+                  <div>
+                    <h3 className="text-lg font-semibold text-text">
+                      {lang === "en" ? ed.degreeEn : ed.degreeRo}
+                    </h3>
+                    <p className="text-primary text-sm font-medium">
+                      {lang === "en" ? ed.institutionEn : ed.institutionRo}
+                    </p>
+                  </div>
+                  <span className="text-xs text-text-faint whitespace-nowrap mt-1">
+                    {ed.period} &middot; {ed.location}
+                  </span>
                 </div>
               </div>
             ))}
