@@ -18,8 +18,14 @@ export interface Project {
   domain: string;
   descriptionEn: string;
   descriptionRo: string;
-  highlightsEn: string[];
-  highlightsRo: string[];
+  architectureEn: string[];
+  architectureRo: string[];
+  challengesEn: string[];
+  challengesRo: string[];
+  solutionsEn: string[];
+  solutionsRo: string[];
+  impactEn: string[];
+  impactRo: string[];
   tech: string[];
   color: string;
   link?: string;
@@ -130,22 +136,56 @@ export const projects: Project[] = [
     title: "ROeID",
     domain: "Digital Identity & Cryptography",
     descriptionEn:
-      "Romania's national electronic identity mobile application. The NFC chip stack on the phone plus the identity-verification and request-security layer on the backend — delivered across the mobile client, Node.js backend, and Python verification service.",
+      "Romania's national electronic identity mobile application. The NFC chip stack on the phone plus the identity-verification and request-security layer on the backend.",
     descriptionRo:
-      "Aplicatia mobila nationala de identitate electronica a Romaniei. Stiva NFC a chip-ului pe telefon plus stratul de verificare a identitatii si securitate a cererilor pe backend — livrata pe clientul mobil, backend-ul Node.js si serviciul de verificare Python.",
-    highlightsEn: [
-      "Owned the full crypto/NFC stack — dmrtd Dart fork, Flutter readers, Node.js backend, Python verification",
-      "PACE and Chip Authentication on brainpoolP256r1 with AES-CMAC secure messaging. Split-PACE — the phone never holds ephemeral session keys, the backend does",
-      "Backend request-security boundary — signed and encrypted request channel with cached asymmetric keys, and Passive Authentication against Romanian CSCA trust chains",
-      "Identity-verification pipeline — MRZ/CNP/QES cross-reference, enterprise IDM integration, cloud liveness verification, and government face/address database matching",
-      "QES via PKI applet (SHA-384) with TSA-stamped PDFs, and a push-authentication module (tap-to-approve) for external-service logins",
+      "Aplicatia mobila nationala de identitate electronica a Romaniei. Stiva NFC a chip-ului pe telefon plus stratul de verificare a identitatii si securitate a cererilor pe backend.",
+    architectureEn: [
+      "Mobile client — Flutter + a forked, extended dmrtd Dart library: NFC chip reading, PACE, Chip Authentication",
+      "Node.js backend — request-security boundary and identity-verification orchestration",
+      "Python verification service — CSCA trust-chain validation and document-hash verification",
+      "Split-PACE topology — ephemeral session keys live on the backend, never on the phone",
     ],
-    highlightsRo: [
-      "Am detinut tot stack-ul crypto/NFC — fork dmrtd Dart, cititoare Flutter, backend Node.js, verificare Python",
-      "PACE si Chip Authentication pe brainpoolP256r1 cu AES-CMAC secure messaging. Split-PACE — telefonul nu detine niciodata chei de sesiune, backend-ul da",
-      "Boundary de securitate a cererilor pe backend — canal de cereri semnate si criptate cu chei asimetrice cache-uite, si Passive Authentication pe lanturi CSCA romanesti",
-      "Pipeline de verificare a identitatii — cross-reference MRZ/CNP/QES, integrare IDM enterprise, verificare liveness in cloud si potrivire pe baza de date guvernamentala fata/adresa",
-      "QES via applet PKI (SHA-384) cu PDF-uri cu timestamp TSA si modul push de autentificare (tap-to-approve) pentru login la servicii externe",
+    architectureRo: [
+      "Client mobil — Flutter + libraria dmrtd Dart fork-uita si extinsa: citire chip NFC, PACE, Chip Authentication",
+      "Backend Node.js — boundary de securitate a cererilor si orchestrare verificare identitate",
+      "Serviciu Python de verificare — validare lant CSCA si verificare hash-uri documente",
+      "Topologie split-PACE — cheile de sesiune efemere traiesc pe backend, niciodata pe telefon",
+    ],
+    challengesEn: [
+      "Public eID libraries stop at BAC; PACE on brainpoolP256r1 with AES-CMAC had to be built from scratch",
+      "Mobile-to-backend request channel had to survive replay, MITM, and key rotation",
+      "Identity cross-reference across MRZ, CNP, and QES certificate without false positives",
+      "End-to-end chip authenticity verified against the Romanian CSCA trust chain",
+    ],
+    challengesRo: [
+      "Librariile publice eID se opresc la BAC; PACE pe brainpoolP256r1 cu AES-CMAC trebuit construit de la zero",
+      "Canal de cereri rezistent la replay, MITM si rotatia cheilor",
+      "Cross-reference identitate prin MRZ, CNP si certificat QES fara fals pozitiv",
+      "Autenticitate chip verificata end-to-end pe lantul de incredere CSCA romanesc",
+    ],
+    solutionsEn: [
+      "Forked dmrtd and added full PACE + Chip Authentication on the Dart side; published the fork as open source",
+      "Signed-and-encrypted request channel with cached asymmetric keys",
+      "Strict matching on identity boundaries with MRZ/CNP/QES cross-reference",
+      "Passive Authentication against the multi-CSCA Romanian trust chain in the Python verification service",
+    ],
+    solutionsRo: [
+      "Fork dmrtd cu suport complet PACE + Chip Authentication pe partea Dart; publicat ca open source",
+      "Canal de cereri semnat si criptat cu chei asimetrice cache-uite",
+      "Potrivire stricta pe limitele identitatii cu cross-reference MRZ/CNP/QES",
+      "Passive Authentication pe lantul multi-CSCA romanesc in serviciul Python",
+    ],
+    impactEn: [
+      "Production-deployed cryptographic stack for Romania's national eID",
+      "Same protocols implemented consistently across Dart, Node.js, and Python",
+      "TSA-stamped QES PDF signing for legally binding documents",
+      "Tap-to-approve push-authentication module powering external-service logins",
+    ],
+    impactRo: [
+      "Stiva criptografica deployata in productie pentru eID-ul national al Romaniei",
+      "Aceleasi protocoale implementate consistent in Dart, Node.js si Python",
+      "Semnare QES PDF cu timestamp TSA pentru documente cu valoare legala",
+      "Modul de autentificare push (tap-to-approve) pentru login la servicii externe",
     ],
     tech: ["Flutter/Dart", "Node.js", "Python", "NFC", "PACE", "ECDH", "AES-CMAC"],
     color: "#a78bfa",
@@ -155,22 +195,52 @@ export const projects: Project[] = [
     title: "REGES",
     domain: "Government Platform",
     descriptionEn:
-      "The back-office of Romania's Labor Inspection platform — services used internally by labor inspectors to manage registry access, run verification workflows, and generate signed reports. Front-office is owned by a separate team.",
+      "The back-office of Romania's Labor Inspection platform — services used internally by labor inspectors to manage registry access, run verification workflows, and generate signed reports. Front-office owned by a separate team.",
     descriptionRo:
-      "Back-office-ul platformei Inspectiei Muncii din Romania — servicii folosite intern de inspectorii de munca pentru managementul accesului la registru, rularea workflow-urilor de verificare si generarea rapoartelor semnate. Front-office-ul este detinut de o echipa separata.",
-    highlightsEn: [
-      "Principal engineer on the back-office — full ownership of the business APIs and the async workflow layer",
-      "Access management APIs — labor inspectors approve or reject registry access for delegated representatives and employee accounts",
-      "Async verification workflows on Kafka — PDF signature validation, external registry lookups, and data extraction kept off the request path",
-      "Report generation pipeline — back-office trigger, Kafka-driven PDF assembly, signed via the platform's signing service",
-      "Multi-language microservices — TypeScript/NestJS for business logic, C#/.NET for document signing, Java for signature validation. Kafka, Kubernetes, mTLS-bounded ingress",
+      "Back-office-ul platformei Inspectiei Muncii din Romania — servicii folosite intern de inspectorii de munca pentru managementul accesului la registru, workflow-uri de verificare si generare rapoarte semnate. Front-office detinut de o echipa separata.",
+    architectureEn: [
+      "TypeScript / NestJS — business APIs (reges-bapi)",
+      "TypeScript / NestJS workers — async processing on Kafka (reges-process)",
+      "C# / .NET — document signing service (reges-sign)",
+      "Java — signature validation, EU DSS compliance (reges-dss)",
+      "Kafka event bus, Kubernetes deployment, mTLS-bounded ingress",
     ],
-    highlightsRo: [
+    architectureRo: [
+      "TypeScript / NestJS — API-uri de business (reges-bapi)",
+      "Worker-i TypeScript / NestJS — procesare asincrona pe Kafka (reges-process)",
+      "C# / .NET — serviciu de semnare documente (reges-sign)",
+      "Java — validare semnaturi, conformitate EU DSS (reges-dss)",
+      "Bus de evenimente Kafka, deployment Kubernetes, ingress cu mTLS",
+    ],
+    challengesEn: [
+      "Long-running validation and external registry lookups couldn't block the request path",
+      "PDF signing flows had to remain compliant with EU DSS",
+      "Multi-language services needed a shared validation and contract layer",
+    ],
+    challengesRo: [
+      "Validarea de durata lunga si lookup-urile in registre externe nu puteau bloca calea cererii",
+      "Fluxurile de semnare PDF trebuiau sa ramana conforme EU DSS",
+      "Servicii multi-limbaj aveau nevoie de un strat comun de validare si contracte",
+    ],
+    solutionsEn: [
+      "Async workflows on Kafka — PDF validation, registry lookups, and data extraction kept off the request path",
+      "Document signing routed through a dedicated C# service backed by a state signing API",
+      "Shared NestJS library (reges-cmn) for axios+retry, MinIO, Kafka config, and validation pipes",
+    ],
+    solutionsRo: [
+      "Workflow-uri asincrone pe Kafka — validare PDF, lookup-uri in registre, extragere date in afara caii cererii",
+      "Semnare documente printr-un serviciu C# dedicat backed de un API de semnare al statului",
+      "Librarie NestJS comuna (reges-cmn) pentru axios+retry, MinIO, config Kafka, pipe-uri de validare",
+    ],
+    impactEn: [
+      "Principal engineer on the back-office — full ownership of business APIs and the async workflow layer",
+      "Access management for delegated representatives and employee accounts in production",
+      "Kafka-driven report generation pipeline with horizontal scaling per topic",
+    ],
+    impactRo: [
       "Inginer principal pe back-office — detinerea completa a API-urilor de business si a stratului de workflow-uri asincrone",
-      "API-uri de management acces — inspectorii de munca aproba sau resping accesul la registru pentru reprezentanti delegati si conturi de angajati",
-      "Workflow-uri asincrone de verificare pe Kafka — validare semnaturi PDF, lookup-uri in registre externe si extragere de date, in afara caii cererii",
-      "Pipeline de generare rapoarte — declansat din back-office, asamblare PDF pe Kafka, semnat prin serviciul de semnare al platformei",
-      "Microservicii multi-limbaj — TypeScript/NestJS pentru business logic, C#/.NET pentru semnare documente, Java pentru validare semnaturi. Kafka, Kubernetes, ingress cu mTLS",
+      "Management acces pentru reprezentanti delegati si conturi de angajati in productie",
+      "Pipeline de generare rapoarte pe Kafka cu scalare orizontala per topic",
     ],
     tech: ["TypeScript/NestJS", "C#/.NET", "Java", "Kafka", "Kubernetes", "Redis"],
     color: "#34d399",
@@ -179,20 +249,50 @@ export const projects: Project[] = [
     title: "VTEX Payment Connectors",
     domain: "Payment Engineering",
     descriptionEn:
-      "Payment integrations for European e-commerce clients on the VTEX platform — authorizations, captures, marketplace splits, and refunds wired into VTEX checkout. 11+ providers across 6 countries, each with its own regulatory and edge-case landscape. All live in production.",
+      "Payment integrations for European e-commerce clients on the VTEX platform — authorizations, captures, marketplace splits, and refunds wired into VTEX checkout. 11+ providers across 6 countries, all live in production.",
     descriptionRo:
-      "Integrari de plati pentru clienti de e-commerce europeni pe platforma VTEX — autorizari, capturi, split-uri marketplace si refund-uri conectate la checkout-ul VTEX. 11+ furnizori in 6 tari, fiecare cu propriul peisaj de reglementari si cazuri speciale. Totul live in productie.",
-    highlightsEn: [
-      "11+ connectors across DE, PL, FR, RO, BG, and Asia — Adyen, PayU, Oney, P24, Netopia, Mokka, TBI, ING, Stripe, Checkout.com",
-      "OBI/Adyen flagship: marketplace split payments with multi-seller commission computation (~20K LOC, dominant contributor)",
-      "4 distinct refund flows (full cancel, partial, returns, goodwill) each recomputing commissions correctly",
-      "Klarna partial-capture flows, mixed-cart handling, distributed locking via MasterData for race conditions",
+      "Integrari de plati pentru clienti de e-commerce europeni pe platforma VTEX — autorizari, capturi, split-uri marketplace si refund-uri conectate la checkout-ul VTEX. 11+ furnizori in 6 tari, totul live in productie.",
+    architectureEn: [
+      "TypeScript on VTEX IO — provider-side connector apps integrated with VTEX checkout",
+      "Per-provider integrations (auth, capture, refund, settlement, webhooks)",
+      "MasterData for distributed locking and stateful flows",
+      "Shared multi-seller commission engine for marketplace splits (OBI/Adyen)",
     ],
-    highlightsRo: [
-      "11+ conectori in DE, PL, FR, RO, BG si Asia — Adyen, PayU, Oney, P24, Netopia, Mokka, TBI, ING, Stripe, Checkout.com",
-      "Flagship OBI/Adyen: split payments marketplace cu calcul comisioane multi-vanzator (~20K LOC, contribuitor dominant)",
-      "4 fluxuri distincte de refund (cancel complet, partial, retur, goodwill) fiecare recalculand corect comisioanele",
-      "Capturi partiale Klarna, cos mixt, locking distribuit via MasterData pentru race conditions",
+    architectureRo: [
+      "TypeScript pe VTEX IO — aplicatii conector partea furnizor integrate cu checkout-ul VTEX",
+      "Integrari per furnizor (auth, capture, refund, settlement, webhook-uri)",
+      "MasterData pentru locking distribuit si fluxuri cu stare",
+      "Motor comun de comisioane multi-vanzator pentru split-uri marketplace (OBI/Adyen)",
+    ],
+    challengesEn: [
+      "Each provider has its own state machines, webhook contracts, and refund semantics",
+      "Marketplace splits with multi-seller commissions across 6+ regulatory environments",
+      "Race conditions between webhook arrival and order-state mutation",
+    ],
+    challengesRo: [
+      "Fiecare furnizor are propriile state machines, contracte webhook si semantici de refund",
+      "Split-uri marketplace cu comisioane multi-vanzator in 6+ medii de reglementare",
+      "Race conditions intre sosirea webhook-ului si mutatia starii comenzii",
+    ],
+    solutionsEn: [
+      "11+ connectors implemented to a common VTEX payment-provider protocol",
+      "Multi-seller commission engine with 4 distinct refund flows (full cancel, partial, returns, goodwill) — each recomputing commissions correctly",
+      "Distributed locking via MasterData; idempotency keys for webhook dedup",
+    ],
+    solutionsRo: [
+      "11+ conectori implementati la un protocol comun VTEX",
+      "Motor de comisioane multi-vanzator cu 4 fluxuri distincte de refund (cancel complet, partial, retur, goodwill) — fiecare recalculand corect comisioanele",
+      "Locking distribuit via MasterData; chei de idempotenta pentru deduplicare webhook",
+    ],
+    impactEn: [
+      "11+ payment connectors live in production across DE, PL, FR, RO, BG, and Asia (Adyen, PayU, Oney, P24, Netopia, Mokka, TBI, ING, Stripe, Checkout.com)",
+      "OBI/Adyen flagship: ~20K LOC TypeScript, dominant contributor",
+      "Klarna partial-capture flows, mixed-cart handling, multi-seller checkouts shipped",
+    ],
+    impactRo: [
+      "11+ conectori de plati live in productie in DE, PL, FR, RO, BG si Asia (Adyen, PayU, Oney, P24, Netopia, Mokka, TBI, ING, Stripe, Checkout.com)",
+      "Flagship OBI/Adyen: ~20K LOC TypeScript, contribuitor dominant",
+      "Capturi partiale Klarna, cos mixt, checkout-uri multi-vanzator livrate",
     ],
     tech: ["TypeScript", "Node.js", "Adyen API", "VTEX IO"],
     color: "#60a5fa",
@@ -201,20 +301,48 @@ export const projects: Project[] = [
     title: "OJP4Danube",
     domain: "EU Transport Integration",
     descriptionEn:
-      "An EU project to let travellers plan a single trip across 6 Danube-region countries' public transport networks — each country with its own OJP-XML dialect, journey planner, and border-crossing rules. Delivered solo: backend, client, infra.",
+      "An EU project to let travellers plan a single trip across 6 Danube-region countries' public transport networks — each country with its own OJP-XML dialect, journey planner, and border-crossing rules. Delivered solo.",
     descriptionRo:
-      "Un proiect EU pentru a permite planificarea unei calatorii unice in retelele de transport public din 6 tari dunarene — fiecare tara cu propriul dialect OJP-XML, planificator si reguli de tranzit. Livrat solo: backend, client, infrastructura.",
-    highlightsEn: [
-      "307 of 325 commits (94%) — sole architect of backend routing engine, Flutter client, and CI/CD",
-      "Federates 6 national journey planners in parallel, normalising XML namespace differences per country",
-      "Cross-border trip chaining through exchange points with separate paths for bike-only, public-transport, and mixed modes",
+      "Un proiect EU pentru a permite planificarea unei calatorii unice in retelele de transport public din 6 tari dunarene — fiecare tara cu propriul dialect OJP-XML, planificator si reguli de tranzit. Livrat solo.",
+    architectureEn: [
+      "TypeScript backend on Firebase Cloud Functions — federated journey planner",
       "Multi-platform Flutter client (web, Android, iOS, Windows) on AsyncRedux + Freezed",
+      "Parallel federation across 6 national journey planners",
     ],
-    highlightsRo: [
-      "307 din 325 commit-uri (94%) — arhitect unic al backend-ului de routing, al clientului Flutter si CI/CD",
-      "Federeaza 6 planificatoare nationale in paralel, normalizand diferentele de namespace XML per tara",
-      "Inlantuirea calatoriilor transfrontaliere prin puncte de schimb cu cai separate pentru bicicleta, transport public si mixt",
+    architectureRo: [
+      "Backend TypeScript pe Firebase Cloud Functions — planificator de calatorii federat",
       "Client Flutter multi-platforma (web, Android, iOS, Windows) pe AsyncRedux + Freezed",
+      "Federare paralela peste 6 planificatoare nationale",
+    ],
+    challengesEn: [
+      "Each country uses its own OJP-XML dialect — schemas, namespaces, and optional fields all vary",
+      "Cross-border trips require chaining through exchange points",
+      "Three transport modes (bike-only, public-transport, mixed) need separate routing logic",
+    ],
+    challengesRo: [
+      "Fiecare tara foloseste propriul dialect OJP-XML — scheme, namespace-uri, campuri optionale variaza",
+      "Calatoriile transfrontaliere necesita inlantuire prin puncte de schimb",
+      "Trei moduri de transport (doar bicicleta, transport public, mixt) au nevoie de logica de routing separata",
+    ],
+    solutionsEn: [
+      "XML namespace and schema normalisation layer per country",
+      "Exchange-point chaining algorithm with per-mode path resolution",
+      "Parallel federation across 6 planners; results merged and ranked",
+    ],
+    solutionsRo: [
+      "Strat de normalizare namespace si schema XML per tara",
+      "Algoritm de inlantuire prin puncte de schimb cu rezolvare de cale per mod",
+      "Federare paralela peste 6 planificatoare; rezultatele agregate si rankate",
+    ],
+    impactEn: [
+      "307 of 325 commits (94%) — sole architect of backend, client, and CI/CD",
+      "6 Danube-region countries served in production",
+      "EU OJP standard compliance",
+    ],
+    impactRo: [
+      "307 din 325 commit-uri (94%) — arhitect unic al backend-ului, clientului si CI/CD",
+      "6 tari dunarene servite in productie",
+      "Conformitate cu standardul EU OJP",
     ],
     tech: ["TypeScript", "Flutter", "Firebase", "OJP/XML"],
     color: "#fbbf24",
@@ -223,20 +351,48 @@ export const projects: Project[] = [
     title: "Flow",
     domain: "IoT & Mobility",
     descriptionEn:
-      "Real-time IoT backend for an electric scooter rental platform — unlock commands, GPS, battery state over MQTT with a proprietary scooter protocol. The rider app surfaced live ride telemetry and handled tokenised payments.",
+      "Real-time IoT backend for an electric scooter rental platform — unlock commands, GPS, battery state over MQTT with a proprietary scooter protocol.",
     descriptionRo:
-      "Backend IoT in timp real pentru o platforma de inchiriere trotinete electrice — comenzi de deblocare, GPS, stare baterie prin MQTT cu un protocol proprietar. Aplicatia de rider afisa telemetrie live si gestiona plati tokenizate.",
-    highlightsEn: [
-      "Dominant contributor on the IoT backend (56% of commits) — MQTT broker talking directly to scooter controllers",
-      "Decoded the proprietary telemetry protocol — ~50 field codes across GPS, BMS cell voltages, ESC firmware",
-      "Unlock handshake: MQTT command → EventEmitter callback awaiting hardware ACK with 1.5s timeout",
-      "Also #1 on the Flutter rider app — Redux + epics, map clustering, MobilePay EU tokenised payments",
+      "Backend IoT in timp real pentru o platforma de inchiriere trotinete electrice — comenzi de deblocare, GPS, stare baterie prin MQTT cu un protocol proprietar.",
+    architectureEn: [
+      "Node.js IoT backend — MQTT broker talking directly to scooter controllers",
+      "Flutter rider app — Redux + epics, real-time map clustering, MobilePay tokenised payments",
+      "Proprietary scooter telemetry protocol (~50 field codes)",
     ],
-    highlightsRo: [
-      "Contribuitor dominant pe backend-ul IoT (56% din commit-uri) — broker MQTT comunicand direct cu controlerele",
-      "Am decodat protocolul proprietar de telemetrie — ~50 coduri de camp pentru GPS, voltaje BMS, firmware ESC",
-      "Handshake de deblocare: comanda MQTT → callback EventEmitter asteptand ACK hardware cu timeout 1.5s",
-      "Si #1 pe aplicatia Flutter — Redux + epics, clustering harta, plati tokenizate MobilePay EU",
+    architectureRo: [
+      "Backend IoT Node.js — broker MQTT comunicand direct cu controlerele trotinetelor",
+      "Aplicatie Flutter de rider — Redux + epics, clustering harta in timp real, plati tokenizate MobilePay",
+      "Protocol proprietar de telemetrie (~50 coduri de camp)",
+    ],
+    challengesEn: [
+      "Hardware unlock had to confirm reception with no protocol-level guarantees",
+      "Telemetry from many scooters at once required parsing variable-rate streams",
+      "Cross-platform map clustering had to render thousands of pins on mobile",
+    ],
+    challengesRo: [
+      "Deblocarea hardware trebuia sa confirme receptia fara garantii la nivel de protocol",
+      "Telemetria de la multe trotinete simultan necesita parsare de stream-uri cu rata variabila",
+      "Clustering-ul hartii cross-platform trebuia sa redeze mii de pini pe mobil",
+    ],
+    solutionsEn: [
+      "Unlock handshake — MQTT command → EventEmitter callback awaiting hardware ACK with a 1.5s timeout",
+      "Decoded ~50 telemetry field codes across GPS, BMS cell voltages, ESC firmware",
+      "Custom map clustering on Flutter for performance at scale",
+    ],
+    solutionsRo: [
+      "Handshake de deblocare — comanda MQTT → callback EventEmitter asteptand ACK hardware cu timeout 1.5s",
+      "Decodat ~50 coduri de telemetrie pentru GPS, voltaje BMS, firmware ESC",
+      "Clustering harta custom pe Flutter pentru performanta la scara",
+    ],
+    impactEn: [
+      "Dominant contributor on the IoT backend (56% of commits)",
+      "#1 contributor on the Flutter rider app",
+      "Production deployment with live telemetry, payments, and ride state",
+    ],
+    impactRo: [
+      "Contribuitor dominant pe backend-ul IoT (56% din commit-uri)",
+      "Contribuitor #1 pe aplicatia Flutter de rider",
+      "Deployment in productie cu telemetrie live, plati si stare ride",
     ],
     tech: ["Node.js", "MQTT", "MongoDB", "Redis", "Flutter"],
     color: "#f472b6",
@@ -248,15 +404,49 @@ export const projects: Project[] = [
       "Personal exploration into systematic crypto trading on Binance — an orchestrated execution framework, not another buy-the-dip script. Built over four months as a sandbox for strategy and architecture ideas, never shipped commercially.",
     descriptionRo:
       "Explorare personala in tranzactionare crypto sistematica pe Binance — un framework de executie orchestrat, nu inca un script buy-the-dip. Construit in patru luni ca sandbox pentru idei de strategie si arhitectura, niciodata livrat comercial.",
-    highlightsEn: [
-      "Orchestrator pattern decoupling signal generation from order execution and wallet state",
-      "Pluggable strategy interface with 16 variants — MACD, SAR, ADX, and Fractal combinations",
-      "Redis-backed backtesting harness with quantified per-strategy results (win rate, drawdown, fees ratio)",
+    architectureEn: [
+      "Python orchestrator with a pluggable Strategy interface",
+      "Three execution modes from the same code path — live Binance, BacktestExchange (Redis-backed), PaperBinance",
+      "State + Persistence layer (PersistLayer) for crash recovery",
+      "Telegram notifications for fills, exceptions, and wallet status",
     ],
-    highlightsRo: [
-      "Pattern de orchestrator care decupleaza generarea semnalelor de executia ordinelor si starea wallet-ului",
-      "Interfata pluggable de strategie cu 16 variante — combinatii MACD, SAR, ADX si Fractal",
-      "Harness de backtesting bazat pe Redis cu rezultate cuantificate per strategie (win rate, drawdown, ratio comisioane)",
+    architectureRo: [
+      "Orchestrator Python cu interfata Strategy pluggable",
+      "Trei moduri de executie din acelasi cod — Binance live, BacktestExchange (backed pe Redis), PaperBinance",
+      "Strat de stare si persistenta (PersistLayer) pentru recovery dupa crash",
+      "Notificari Telegram pentru fill-uri, exceptii si status wallet",
+    ],
+    challengesEn: [
+      "Multiple strategies needed independent iteration without touching the execution core",
+      "Backtests had to share the same code as live runs to avoid drift",
+      "A multi-pair live bot will die — open positions can't be lost on restart",
+    ],
+    challengesRo: [
+      "Mai multe strategii necesitau iteratie independenta fara sa atinga core-ul de executie",
+      "Backtest-urile trebuiau sa partajeze acelasi cod cu rularile live pentru a evita drift-ul",
+      "Un bot multi-pair live va muri — pozitiile deschise nu se pot pierde la restart",
+    ],
+    solutionsEn: [
+      "Orchestrator / Strategy split — strategies are subclasses with four entry points (check_entry, open_position, exit_limits, check_exit)",
+      "BacktestExchange replays Redis-backed historical candles through the same orchestrator",
+      "PersistLayer hydrates open positions and wallet state on restart; MAX_COINS guard enforced before strategy entry",
+    ],
+    solutionsRo: [
+      "Split Orchestrator / Strategy — strategiile sunt subclase cu patru entry points (check_entry, open_position, exit_limits, check_exit)",
+      "BacktestExchange reia candle-urile istorice din Redis prin acelasi orchestrator",
+      "PersistLayer hidrateaza pozitiile deschise si starea wallet-ului la restart; guard MAX_COINS aplicat inainte de entry",
+    ],
+    impactEn: [
+      "16 strategy variants run interchangeably (MACD, SAR, ADX, Fractal combinations)",
+      "Quantified per-strategy results — win rate, drawdown, fees ratio, average holding time",
+      "78 commits across 4 months of active iteration",
+      "Open source — github.com/exilonX/cryptobot",
+    ],
+    impactRo: [
+      "16 variante de strategie ruleaza interchangeable (combinatii MACD, SAR, ADX, Fractal)",
+      "Rezultate cuantificate per strategie — win rate, drawdown, ratio comisioane, timp mediu de detinere",
+      "78 commit-uri pe parcursul a 4 luni de iteratie activa",
+      "Open source — github.com/exilonX/cryptobot",
     ],
     tech: ["Python", "python-binance", "Redis", "pytest"],
     color: "#22d3ee",
