@@ -10,6 +10,7 @@ import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
 import { CaseStudyDiploma } from "./pages/CaseStudyDiploma";
 import { CaseStudyCryptobot } from "./pages/CaseStudyCryptobot";
+import { CaseStudyAgentCommerce } from "./pages/CaseStudyAgentCommerce";
 
 type Route =
   | { type: "home" }
@@ -92,6 +93,7 @@ function App() {
   if (route.type === "case-study") {
     if (route.slug === "diploma-project") return <CaseStudyDiploma />;
     if (route.slug === "cryptobot") return <CaseStudyCryptobot />;
+    if (route.slug === "agent-commerce") return <CaseStudyAgentCommerce />;
   }
 
   return (

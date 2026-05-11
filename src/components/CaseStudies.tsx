@@ -15,6 +15,18 @@ interface CaseStudyItem {
 
 const caseStudies: CaseStudyItem[] = [
   {
+    slug: "agent-commerce",
+    domain: "Agent Commerce · AP2 · Cryptography",
+    title: "Agent Commerce on AP2",
+    color: "#10b981",
+    teaserEn:
+      "Production AP2 v0.2 implementation — verifiable signed mandates for AI-mediated payments. Three-party trust chain (Merchant · Credentials Provider · Payment Network), Ed25519 / JCS / did:web, RAG-powered shopping assistant. Showcased on VTEX; backend-agnostic by design.",
+    teaserRo:
+      "Implementare AP2 v0.2 de productie — mandate semnate criptografic pentru plati mediate de agenti AI. Lant de incredere cu trei parti, Ed25519 / JCS / did:web, asistent de shopping cu RAG. Showcase pe VTEX; arhitectura agnostica de backend.",
+    keyStatEn: "3 mandate types · 3 DIDs · AP2 v0.2 · 2026",
+    keyStatRo: "3 tipuri mandate · 3 DIDs · AP2 v0.2 · 2026",
+  },
+  {
     slug: "diploma-project",
     domain: "Digital Identity & Cryptography",
     title: "The Graph of Romanian Businessmen",
