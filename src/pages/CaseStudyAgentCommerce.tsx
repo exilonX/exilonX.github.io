@@ -54,6 +54,8 @@ export function CaseStudyAgentCommerce() {
         "Stripe payment mandate",
         "headless commerce",
       ],
+      codeRepository: "https://github.com/exilonX/ap2",
+      license: "https://mariadb.com/bsl11/",
     });
     document.head.appendChild(schema);
 
@@ -108,7 +110,7 @@ export function CaseStudyAgentCommerce() {
           />
           <Meta
             label="Code"
-            value='Private. <a href="#contact-cta" class="text-primary hover:underline">Reach out</a> to evaluate deploying on your store.'
+            value='Source-available under <a href="https://mariadb.com/bsl11/" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">Business Source License 1.1</a>. <a href="https://github.com/exilonX/ap2" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">github.com/exilonX/ap2</a> &middot; production deployment requires commercial license &mdash; <a href="#contact-cta" class="text-primary hover:underline">book a call</a>.'
           />
         </div>
 
@@ -489,7 +491,7 @@ export function CaseStudyAgentCommerce() {
           </p>
           <div className="grid md:grid-cols-2 gap-4">
             <div className="glass-card rounded-xl p-5">
-              <div className="text-xs font-semibold uppercase tracking-wider text-success mb-2">REAL</div>
+              <div className="text-xs font-semibold uppercase tracking-wider text-emerald mb-2">REAL</div>
               <ul className="text-sm text-text-muted leading-relaxed space-y-1 list-disc list-inside">
                 <li>Ed25519 keypairs, signatures, verifications</li>
                 <li>JCS (RFC 8785) canonical hashing</li>
@@ -502,7 +504,7 @@ export function CaseStudyAgentCommerce() {
               </ul>
             </div>
             <div className="glass-card rounded-xl p-5">
-              <div className="text-xs font-semibold uppercase tracking-wider text-warn mb-2">MOCKED (POST-DEMO)</div>
+              <div className="text-xs font-semibold uppercase tracking-wider text-accent mb-2">MOCKED (POST-DEMO)</div>
               <ul className="text-sm text-text-muted leading-relaxed space-y-1 list-disc list-inside">
                 <li>CP class: signs without a real wallet sheet / device-tap</li>
                 <li>Network class: verifies but doesn&rsquo;t hit Visa rails</li>
@@ -548,14 +550,27 @@ export function CaseStudyAgentCommerce() {
               Deploy AP2 agent commerce on your store
             </h2>
             <p className="text-text-muted leading-relaxed mb-6 max-w-2xl mx-auto">
-              VTEX, Shopify, BigCommerce, or a custom headless backend &mdash; the protocol engine is backend-agnostic. Production CP integration (Stripe, Adyen, PayPal, Google Pay) and Network integration (Visa, Mastercard) ready to slot in when their AP2 sandboxes ship.
+              The code is open under the Business Source License &mdash; read it, fork it for evaluation. For production deployment on a real store (VTEX, Shopify, BigCommerce, custom headless), or for the commercial license, integration work, and ongoing support as the AP2 spec evolves, get in touch.
             </p>
-            <a
-              href="/#contact"
-              className="inline-block px-6 py-3 rounded-lg bg-primary text-white font-semibold hover:opacity-90 transition-opacity"
-            >
-              Book a call &rarr;
-            </a>
+            <div className="flex flex-wrap gap-3 justify-center">
+              <a
+                href="/#contact"
+                className="inline-block px-6 py-3 rounded-lg bg-primary text-white font-semibold hover:opacity-90 transition-opacity"
+              >
+                Book a call &rarr;
+              </a>
+              <a
+                href="https://github.com/exilonX/ap2"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-6 py-3 rounded-lg border border-border text-text font-semibold hover:bg-bg-muted/30 transition-colors"
+              >
+                View source &rarr;
+              </a>
+            </div>
+            <p className="text-xs text-text-faint mt-5">
+              Licensed under <a href="https://mariadb.com/bsl11/" target="_blank" rel="noopener noreferrer" className="underline hover:text-text-muted">BSL 1.1</a> &middot; converts to Apache 2.0 in 2030
+            </p>
           </div>
         </section>
 
