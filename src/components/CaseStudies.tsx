@@ -66,7 +66,7 @@ export function CaseStudies() {
         </h2>
         <p className="text-text-muted mb-12">{tr.caseStudies.subtitle}</p>
 
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {caseStudies.map((cs) => (
             <a
               key={cs.slug}

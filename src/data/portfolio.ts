@@ -246,6 +246,67 @@ export const projects: Project[] = [
     color: "#34d399",
   },
   {
+    title: "Agent Commerce on AP2",
+    domain: "Agent Payments & Verifiable Credentials",
+    descriptionEn:
+      "Production-grade implementation of Google's Agent Payments Protocol (AP2) — cryptographically signed mandates for AI-mediated shopping with a three-party trust chain anyone can verify. Live demo on VTEX; backend-agnostic by design.",
+    descriptionRo:
+      "Implementare production-grade a Agent Payments Protocol (AP2) de la Google — mandate semnate criptografic pentru cumparaturi mediate de AI, cu un lant de incredere intre trei parti pe care oricine il poate verifica. Demo live pe VTEX; agnostic la backend prin design.",
+    architectureEn: [
+      "AP2 v0.2 protocol engine — Ed25519 signing, JCS (RFC 8785) canonicalization, did:web identities, EdDSA JWT artifacts",
+      "Three-actor trust chain — Merchant, Credentials Provider, Payment Network, each with its own DID and keypair",
+      "Shopping assistant — Claude Desktop (MCP) + storefront widget (React pixel app), same backend HTTP routes",
+      "Two-stage RAG — OpenAI embeddings into Pinecone, hydrated against the live VTEX catalog at query time",
+      "Backend-agnostic core + adapter pattern (CartProvider, CatalogProvider, KeyStore) for VTEX / Shopify / BigCommerce / headless",
+    ],
+    architectureRo: [
+      "Engine de protocol AP2 v0.2 — semnare Ed25519, canonicalizare JCS (RFC 8785), identitati did:web, artefacte JWT EdDSA",
+      "Lant de incredere cu trei actori — Merchant, Credentials Provider, Payment Network, fiecare cu DID-ul si perechea de chei proprii",
+      "Asistent de shopping — Claude Desktop (MCP) + widget storefront (aplicatie React pixel), aceleasi rute backend HTTP",
+      "RAG in doua etape — embeddings OpenAI in Pinecone, hidratat fata de catalogul VTEX live la query time",
+      "Core agnostic la backend + pattern de adapter (CartProvider, CatalogProvider, KeyStore) pentru VTEX / Shopify / BigCommerce / headless",
+    ],
+    challengesEn: [
+      "AP2 is a 2025 spec with no production reference implementations to copy from",
+      "Three parties signing three artifacts must produce a chain anyone can verify with public keys alone",
+      "Catalog-aware product retrieval — keyword search collapses on multilingual queries against a fashion catalogue",
+      "LLM-backed public routes are an obvious abuse vector — every call costs real money",
+    ],
+    challengesRo: [
+      "AP2 e o spec din 2025 fara implementari de referinta din productie de copiat",
+      "Trei parti care semneaza trei artefacte trebuie sa produca un lant verificabil de oricine cu chei publice",
+      "Retrieval de produse constient de catalog — cautarea pe cuvinte cheie cedeaza pe query-uri multilingve intr-un catalog fashion",
+      "Rute publice LLM-backed sunt un vector evident de abuz — fiecare apel costa bani reali",
+    ],
+    solutionsEn: [
+      "Built the spec end-to-end — Ed25519 + JCS + did:web + EdDSA JWTs, drift detection at pay-time, always-emit signed receipts (rejections included)",
+      "Mock Credentials Provider and Payment Network classes designed for one-class swap-in to Stripe / Adyen / PayPal and Visa / Mastercard",
+      "Two-stage RAG — bulk-sync outside the request path + live hydration on query; ~200ms total latency",
+      "Four-layer security: origin allowlist + shared secret, per-IP rate limits, per-session cost caps, auth-gated artifact endpoints",
+    ],
+    solutionsRo: [
+      "Spec construita end-to-end — Ed25519 + JCS + did:web + JWT EdDSA, detectie de drift la pay-time, emisie obligatorie de chitante semnate (inclusiv rejection-uri)",
+      "Clase mock pentru Credentials Provider si Payment Network proiectate pentru swap-in dintr-o singura clasa la Stripe / Adyen / PayPal si Visa / Mastercard",
+      "RAG in doua etape — bulk-sync in afara caii cererii + hidratare live la query; ~200ms latency total",
+      "Securitate pe patru straturi: allowlist origini + secret comun, rate-limit per-IP, cap de cost per sesiune, endpoint-uri de artefacte cu auth",
+    ],
+    impactEn: [
+      "Live demo on VTEX (Romanian catalog) — agent searches → merchant signs cart → CP signs payment → network signs receipt",
+      "Production-ready cryptographic engine; mock providers swap in as one class each",
+      "Solo across architecture, backend, frontend, and ops",
+      "Open for deployment on any storefront backend — VTEX adapter shipped, Shopify / BigCommerce / headless designs ready",
+    ],
+    impactRo: [
+      "Demo live pe VTEX (catalog romanesc) — agentul cauta → merchant-ul semneaza cosul → CP semneaza plata → network-ul semneaza chitanta",
+      "Engine criptografic production-ready; provider-ii mock se inlocuiesc cu cate o clasa fiecare",
+      "Solo pe arhitectura, backend, frontend si ops",
+      "Disponibil pentru deployment pe orice backend de storefront — adaptor VTEX livrat, design-uri Shopify / BigCommerce / headless pregatite",
+    ],
+    tech: ["TypeScript", "VTEX IO", "Node.js", "Ed25519", "JCS", "did:web", "Claude API", "MCP", "Pinecone", "OpenAI"],
+    color: "#10b981",
+    caseStudySlug: "agent-commerce",
+  },
+  {
     title: "VTEX Payment Connectors",
     domain: "Payment Engineering",
     descriptionEn:
