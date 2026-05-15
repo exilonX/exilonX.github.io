@@ -100,8 +100,8 @@ export function CaseStudyAgentCommerce() {
             <p className="text-lg text-text-muted leading-relaxed max-w-2xl mb-8">
               Production-grade implementation of Google&rsquo;s Agent Payments
               Protocol &mdash; cryptographically signed mandates for AI-mediated
-              shopping, with a three-party trust chain anyone can verify.
-              Showcased on VTEX. Backend-agnostic by design.
+              shopping, with a three-party trust chain anyone can verify. Live
+              demo on VTEX.
             </p>
 
             <div className="flex flex-wrap gap-x-8 gap-y-3">
@@ -208,185 +208,6 @@ export function CaseStudyAgentCommerce() {
             verifiable. Different lifecycle on the consent capture. The
             architecture below covers both modes; the live demo exercises the
             human-present path end-to-end.
-          </p>
-        </section>
-
-        {/* ── AP2 in the wild ─────────────────────────────────── */}
-        <section>
-          <h2 className="text-2xl font-bold text-text mb-4 mt-14">
-            AP2 in the wild
-          </h2>
-          <p className="text-text-muted leading-relaxed mb-4">
-            AP2 launched in September 2025 with 60+ founding partner
-            organizations and was donated to the FIDO Alliance shortly after
-            &mdash; the roster grew past 100 organizations by late October 2025.
-            The protocol is no longer a Google-only effort; it&rsquo;s a
-            multi-vendor standard with active production pilots and an explicit
-            push to interoperate with parallel agentic-payment schemes.
-          </p>
-
-          <h3 className="text-lg font-semibold text-text mb-3 mt-6">
-            Founding partner ecosystem
-          </h3>
-          <div className="flex flex-wrap gap-2 mb-4">
-            {[
-              'PayPal',
-              'Mastercard',
-              'American Express',
-              'Adyen',
-              'Coinbase',
-              'Worldpay',
-              'Salesforce',
-              'ServiceNow',
-              'JCB',
-              'UnionPay International',
-              'Etsy',
-              'Revolut',
-              'Forter',
-              'Intuit',
-              'Ant International',
-              'Mysten Labs',
-              'MetaMask',
-              'Cloudflare',
-            ].map((name) => (
-              <span key={name} className="skill-badge">
-                {name}
-              </span>
-            ))}
-          </div>
-          <p className="text-text-muted leading-relaxed">
-            Selected from the public AP2 partner list. The mix matters: card
-            networks (Mastercard, AmEx, JCB, UnionPay), PSPs (Adyen, Worldpay),
-            wallets and credentials providers (PayPal, Coinbase, Revolut,
-            MetaMask), platforms (Salesforce, ServiceNow, Etsy), and
-            infrastructure (Cloudflare for Web Bot Auth, Forter for risk).
-          </p>
-
-          <h3 className="text-lg font-semibold text-text mb-3 mt-8">
-            Notable production rollouts
-          </h3>
-          <div className="grid md:grid-cols-2 gap-4 mb-2">
-            <div className="glass-card rounded-xl p-5">
-              <div className="text-xs font-semibold uppercase tracking-wider text-accent mb-2">
-                PayPal &times; Google Cloud &middot; Oct 2025
-              </div>
-              <p className="text-sm text-text-muted leading-relaxed mb-3">
-                <strong>Conversational Commerce Agent</strong> for merchants
-                &mdash; out-of-box agentic shopping wired through AP2 + A2A.
-                PayPal acts as the Credentials Provider; Google Cloud hosts the
-                merchant-side agent surface. Currently the most production-wired
-                AP2 deployment publicly visible.
-              </p>
-              <a
-                href="https://cloud.google.com/blog/topics/financial-services/introducing-an-agentic-commerce-solution-for-merchants-from-paypal-and-google-cloud"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs text-primary hover:underline"
-              >
-                Read the announcement &rarr;
-              </a>
-            </div>
-            <div className="glass-card rounded-xl p-5">
-              <div className="text-xs font-semibold uppercase tracking-wider text-accent mb-2">
-                Mastercard Agent Pay &middot; Oct 2025
-              </div>
-              <p className="text-sm text-text-muted leading-relaxed mb-3">
-                <strong>Agent Pay Merchant Acceptance Framework</strong> +{' '}
-                <strong>Verifiable Intent</strong>. Trusted agent recognition,
-                agentic tokens, purchase-intent payloads. Mastercard explicitly
-                markets it as &ldquo;protocol-agnostic&rdquo; and aligned with
-                both AP2 and Google&rsquo;s UCP. Underpinned by Cloudflare Web
-                Bot Auth for agent identity at scale.
-              </p>
-              <a
-                href="https://www.mastercard.com/us/en/business/artificial-intelligence/mastercard-agent-pay.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs text-primary hover:underline"
-              >
-                Mastercard Agent Pay &rarr;
-              </a>
-            </div>
-          </div>
-
-          <h3 className="text-lg font-semibold text-text mb-3 mt-8">
-            Where AP2 sits in the protocol stack
-          </h3>
-          <p className="text-text-muted leading-relaxed mb-4">
-            AP2 is the <em>trust layer</em>. Several parallel protocols compose
-            with it or sit adjacent to it. The 2026 picture is closer to a stack
-            than a winner-take-all war:
-          </p>
-          <div className="space-y-3">
-            <div className="glass-card rounded-xl p-4">
-              <div className="text-sm font-semibold text-text mb-1">
-                UCP &mdash; Universal Commerce Protocol &middot; Google &times;
-                Shopify &middot; Jan 2026
-              </div>
-              <p className="text-sm text-text-muted leading-relaxed">
-                Defines the request/response shape of the agentic checkout
-                session. <strong>UCP composes with AP2</strong> &mdash; UCP
-                carries the session, AP2 supplies the cryptographic mandate.
-                Co-developed with Shopify, Etsy, Wayfair, Target, Walmart;
-                endorsed by Adyen, AmEx, Stripe, Visa, Mastercard, Home Depot,
-                Best Buy, Zalando, Flipkart.
-              </p>
-            </div>
-            <div className="glass-card rounded-xl p-4">
-              <div className="text-sm font-semibold text-text mb-1">
-                A2A &mdash; Agent2Agent Protocol
-              </div>
-              <p className="text-sm text-text-muted leading-relaxed">
-                Transport layer for agent-to-agent communication. AP2 is layered
-                above A2A: A2A moves the messages, AP2 signs the consent inside
-                them.
-              </p>
-            </div>
-            <div className="glass-card rounded-xl p-4">
-              <div className="text-sm font-semibold text-text mb-1">
-                MCP &mdash; Model Context Protocol &middot; Anthropic
-              </div>
-              <p className="text-sm text-text-muted leading-relaxed">
-                Local tool-call protocol for LLM clients like Claude Desktop.
-                This implementation uses MCP for the developer-facing Claude
-                Desktop surface; the AP2 ceremony runs server-side identically
-                across surfaces.
-              </p>
-            </div>
-            <div className="glass-card rounded-xl p-4">
-              <div className="text-sm font-semibold text-text mb-1">
-                ACP &mdash; Agentic Commerce Protocol &middot; Stripe &times;
-                OpenAI
-              </div>
-              <p className="text-sm text-text-muted leading-relaxed">
-                Competing checkout standard from the Stripe + OpenAI camp.
-                Different shape than UCP; not directly interoperable with AP2
-                yet, though Mastercard and other actors are explicitly pushing
-                protocol-agnostic frameworks to bridge them.
-              </p>
-            </div>
-            <div className="glass-card rounded-xl p-4">
-              <div className="text-sm font-semibold text-text mb-1">
-                x402 &mdash; HTTP 402 Payment Required &middot; Coinbase
-              </div>
-              <p className="text-sm text-text-muted leading-relaxed">
-                Crypto-rail-first agent payments using the long-dormant HTTP 402
-                status code. Integrated into AWS Bedrock AgentCore Payments
-                alongside Stripe (May 2026). Different rails (on-chain) but
-                conceptually adjacent.
-              </p>
-            </div>
-          </div>
-
-          <p className="text-text-muted leading-relaxed mt-6">
-            This implementation targets <strong>AP2 v0.2 directly</strong>. The
-            architectural seam (separate{' '}
-            <code className="code-inline">@acg/core</code> engine + backend
-            adapters + mock CP/Network classes) is designed to slot under
-            UCP&rsquo;s checkout-session shape when UCP stabilises in
-            production, and to swap in real PayPal / Stripe / Adyen / Visa /
-            Mastercard endpoints as their AP2 surfaces reach general
-            availability.
           </p>
         </section>
 
@@ -753,38 +574,32 @@ export function CaseStudyAgentCommerce() {
             The always-emit invariant
           </h2>
           <p className="text-text-muted leading-relaxed mb-4">
-            A property of AP2 in production you don&rsquo;t see discussed
-            enough:{' '}
             <strong>
-              the Network signs every decision, including rejections.
+              The Network signs every decision, including rejections.
             </strong>{' '}
-            Today, when a payment fails &mdash; insufficient funds, 3DS step-up
-            failure, fraud flag &mdash; the merchant gets back a string in the
-            ISO 8583 response (or a JSON field from the acquirer): &ldquo;51 -
-            INSUFFICIENT FUNDS&rdquo;. The merchant has no cryptographic proof
-            the issuer actually said that.
+            Today, when a payment fails, the merchant gets back a string from
+            the acquirer &mdash; &ldquo;51 - INSUFFICIENT FUNDS&rdquo; &mdash;
+            with no cryptographic proof the issuer actually said that.
           </p>
           <p className="text-text-muted leading-relaxed mb-4">
             With AP2, a rejection is itself a signed artifact: a PaymentReceipt
             where{' '}
             <code className="code-inline">
               approval_status: &quot;rejected&quot;
-            </code>
-            , one or more{' '}
+            </code>{' '}
+            and one or more{' '}
             <code className="code-inline">verification_checks</code> is{' '}
-            <code className="code-inline">false</code>, and the entire receipt
-            is signed by the Network&rsquo;s key. The receipt is{' '}
-            <em>cryptographically valid</em> (verifies against the
-            network&rsquo;s published DID) even though it records a failed
-            payment. Anyone &mdash; merchant, cardholder, auditor, regulator
-            &mdash; can independently verify the issuer reached this conclusion.
+            <code className="code-inline">false</code>, signed by the
+            Network&rsquo;s key. The receipt is <em>cryptographically valid</em>{' '}
+            even though it records a failed payment. Anyone &mdash; merchant,
+            cardholder, auditor, regulator &mdash; can independently verify the
+            issuer reached this conclusion.
           </p>
           <p className="text-text-muted leading-relaxed">
-            That&rsquo;s the gap AP2 closes that today&rsquo;s rails leave open.{' '}
             <em>&ldquo;Merchant says the bank declined&rdquo;</em> becomes{' '}
             <em>
               &ldquo;here is the bank&rsquo;s signed evidence that they
-              declined, with their key, available at their published URL.&rdquo;
+              declined.&rdquo;
             </em>{' '}
             The case study&rsquo;s strongest payoff is showing this: a JSON view
             where <code className="code-inline">approval_status: rejected</code>{' '}
@@ -1027,18 +842,22 @@ export function CaseStudyAgentCommerce() {
           <div className="grid md:grid-cols-2 gap-4">
             <SecurityCard
               name="Origin allowlist + shared secret"
+              prevents="unauthorized callers"
               description="Per-merchant configurable allowlist of browser origins (storefront URLs) for widget traffic. Server-to-server callers (MCP) carry a configured X-ACG-Auth-Token. Fail-closed: misconfigured deploys return 403 on every call."
             />
             <SecurityCard
               name="Per-IP rate limiting"
+              prevents="single-IP bursts"
               description="Two windows enforced together: 60-second burst and 24-hour sustained. Per-class quotas: chat 20/min, mutating 30/min, read 60/min. X-Forwarded-For keyed so each real shopper has their own bucket."
             />
             <SecurityCard
               name="Per-session cost cap"
+              prevents="runaway chat loops"
               description="Catches the failure mode IP rate-limiting misses: a legitimate allowlisted caller whose chat session loops accidentally. Tracked per orderFormId, 24h ceiling configurable per merchant."
             />
             <SecurityCard
               name="Auth-gated artifact retrieval"
+              prevents="order-data scraping"
               description="The verification surface (DID documents, mandate/receipt JSON) stays anonymously fetchable per the AP2 trust model. Order-detail endpoints require an active session so attackers can't enumerate."
             />
           </div>
@@ -1090,6 +909,189 @@ export function CaseStudyAgentCommerce() {
               </ul>
             </div>
           </div>
+        </section>
+
+        {/* ── AP2 in the wild ─────────────────────────────────── */}
+        <section>
+          <h2 className="text-2xl font-bold text-text mb-4 mt-14">
+            AP2 in the wild
+          </h2>
+          <p className="text-xs uppercase tracking-wider text-text-faint mb-4">
+            Context for where AP2 sits in the broader ecosystem &mdash; not
+            required to understand the implementation above.
+          </p>
+          <p className="text-text-muted leading-relaxed mb-4">
+            AP2 launched in September 2025 with 60+ founding partner
+            organizations and was donated to the FIDO Alliance shortly after
+            &mdash; the roster grew past 100 organizations by late October 2025.
+            The protocol is no longer a Google-only effort; it&rsquo;s a
+            multi-vendor standard with active production pilots and an explicit
+            push to interoperate with parallel agentic-payment schemes.
+          </p>
+
+          <h3 className="text-lg font-semibold text-text mb-3 mt-6">
+            Founding partner ecosystem
+          </h3>
+          <div className="flex flex-wrap gap-2 mb-4">
+            {[
+              'PayPal',
+              'Mastercard',
+              'American Express',
+              'Adyen',
+              'Coinbase',
+              'Worldpay',
+              'Salesforce',
+              'ServiceNow',
+              'JCB',
+              'UnionPay International',
+              'Etsy',
+              'Revolut',
+              'Forter',
+              'Intuit',
+              'Ant International',
+              'Mysten Labs',
+              'MetaMask',
+              'Cloudflare',
+            ].map((name) => (
+              <span key={name} className="skill-badge">
+                {name}
+              </span>
+            ))}
+          </div>
+          <p className="text-text-muted leading-relaxed">
+            Selected from the public AP2 partner list. The mix matters: card
+            networks (Mastercard, AmEx, JCB, UnionPay), PSPs (Adyen, Worldpay),
+            wallets and credentials providers (PayPal, Coinbase, Revolut,
+            MetaMask), platforms (Salesforce, ServiceNow, Etsy), and
+            infrastructure (Cloudflare for Web Bot Auth, Forter for risk).
+          </p>
+
+          <h3 className="text-lg font-semibold text-text mb-3 mt-8">
+            Notable production rollouts
+          </h3>
+          <div className="grid md:grid-cols-2 gap-4 mb-2">
+            <div className="glass-card rounded-xl p-5">
+              <div className="text-xs font-semibold uppercase tracking-wider text-accent mb-2">
+                PayPal &times; Google Cloud &middot; Oct 2025
+              </div>
+              <p className="text-sm text-text-muted leading-relaxed mb-3">
+                <strong>Conversational Commerce Agent</strong> for merchants
+                &mdash; out-of-box agentic shopping wired through AP2 + A2A.
+                PayPal acts as the Credentials Provider; Google Cloud hosts the
+                merchant-side agent surface. Currently the most production-wired
+                AP2 deployment publicly visible.
+              </p>
+              <a
+                href="https://cloud.google.com/blog/topics/financial-services/introducing-an-agentic-commerce-solution-for-merchants-from-paypal-and-google-cloud"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-primary hover:underline"
+              >
+                Read the announcement &rarr;
+              </a>
+            </div>
+            <div className="glass-card rounded-xl p-5">
+              <div className="text-xs font-semibold uppercase tracking-wider text-accent mb-2">
+                Mastercard Agent Pay &middot; Oct 2025
+              </div>
+              <p className="text-sm text-text-muted leading-relaxed mb-3">
+                <strong>Agent Pay Merchant Acceptance Framework</strong> +{' '}
+                <strong>Verifiable Intent</strong>. Trusted agent recognition,
+                agentic tokens, purchase-intent payloads. Mastercard explicitly
+                markets it as &ldquo;protocol-agnostic&rdquo; and aligned with
+                both AP2 and Google&rsquo;s UCP. Underpinned by Cloudflare Web
+                Bot Auth for agent identity at scale.
+              </p>
+              <a
+                href="https://www.mastercard.com/us/en/business/artificial-intelligence/mastercard-agent-pay.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-primary hover:underline"
+              >
+                Mastercard Agent Pay &rarr;
+              </a>
+            </div>
+          </div>
+
+          <h3 className="text-lg font-semibold text-text mb-3 mt-8">
+            Where AP2 sits in the protocol stack
+          </h3>
+          <p className="text-text-muted leading-relaxed mb-4">
+            AP2 is the <em>trust layer</em>. Several parallel protocols compose
+            with it or sit adjacent to it. The 2026 picture is closer to a stack
+            than a winner-take-all war:
+          </p>
+          <div className="space-y-3">
+            <div className="glass-card rounded-xl p-4">
+              <div className="text-sm font-semibold text-text mb-1">
+                UCP &mdash; Universal Commerce Protocol &middot; Google &times;
+                Shopify &middot; Jan 2026
+              </div>
+              <p className="text-sm text-text-muted leading-relaxed">
+                Defines the request/response shape of the agentic checkout
+                session. <strong>UCP composes with AP2</strong> &mdash; UCP
+                carries the session, AP2 supplies the cryptographic mandate.
+                Co-developed with Shopify, Etsy, Wayfair, Target, Walmart;
+                endorsed by Adyen, AmEx, Stripe, Visa, Mastercard, Home Depot,
+                Best Buy, Zalando, Flipkart.
+              </p>
+            </div>
+            <div className="glass-card rounded-xl p-4">
+              <div className="text-sm font-semibold text-text mb-1">
+                A2A &mdash; Agent2Agent Protocol
+              </div>
+              <p className="text-sm text-text-muted leading-relaxed">
+                Transport layer for agent-to-agent communication. AP2 is layered
+                above A2A: A2A moves the messages, AP2 signs the consent inside
+                them.
+              </p>
+            </div>
+            <div className="glass-card rounded-xl p-4">
+              <div className="text-sm font-semibold text-text mb-1">
+                MCP &mdash; Model Context Protocol &middot; Anthropic
+              </div>
+              <p className="text-sm text-text-muted leading-relaxed">
+                Local tool-call protocol for LLM clients like Claude Desktop.
+                This implementation uses MCP for the developer-facing Claude
+                Desktop surface; the AP2 ceremony runs server-side identically
+                across surfaces.
+              </p>
+            </div>
+            <div className="glass-card rounded-xl p-4">
+              <div className="text-sm font-semibold text-text mb-1">
+                ACP &mdash; Agentic Commerce Protocol &middot; Stripe &times;
+                OpenAI
+              </div>
+              <p className="text-sm text-text-muted leading-relaxed">
+                Competing checkout standard from the Stripe + OpenAI camp.
+                Different shape than UCP; not directly interoperable with AP2
+                yet, though Mastercard and other actors are explicitly pushing
+                protocol-agnostic frameworks to bridge them.
+              </p>
+            </div>
+            <div className="glass-card rounded-xl p-4">
+              <div className="text-sm font-semibold text-text mb-1">
+                x402 &mdash; HTTP 402 Payment Required &middot; Coinbase
+              </div>
+              <p className="text-sm text-text-muted leading-relaxed">
+                Crypto-rail-first agent payments using the long-dormant HTTP 402
+                status code. Integrated into AWS Bedrock AgentCore Payments
+                alongside Stripe (May 2026). Different rails (on-chain) but
+                conceptually adjacent.
+              </p>
+            </div>
+          </div>
+
+          <p className="text-text-muted leading-relaxed mt-6">
+            This implementation targets <strong>AP2 v0.2 directly</strong>. The
+            architectural seam (separate{' '}
+            <code className="code-inline">@acg/core</code> engine + backend
+            adapters + mock CP/Network classes) is designed to slot under
+            UCP&rsquo;s checkout-session shape when UCP stabilises in
+            production, and to swap in real PayPal / Stripe / Adyen / Visa /
+            Mastercard endpoints as their AP2 surfaces reach general
+            availability.
+          </p>
         </section>
 
         {/* ── Stack ─────────────────────────────────────────────── */}
@@ -1387,14 +1389,21 @@ function ActorCard({
 
 function SecurityCard({
   name,
+  prevents,
   description,
 }: {
   name: string
+  prevents: string
   description: string
 }) {
   return (
     <div className="glass-card rounded-xl p-5">
-      <div className="text-sm font-semibold text-text mb-2">{name}</div>
+      <div className="flex items-start justify-between gap-3 mb-2">
+        <div className="text-sm font-semibold text-text">{name}</div>
+        <span className="text-[10px] font-semibold uppercase tracking-wider text-emerald whitespace-nowrap pt-0.5">
+          stops {prevents}
+        </span>
+      </div>
       <p className="text-sm text-text-muted leading-relaxed">{description}</p>
     </div>
   )
