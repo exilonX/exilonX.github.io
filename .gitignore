@@ -16,6 +16,7 @@ dist-ssr
 CONTEXT.md
 REVIEW_FEEDBACK.md
 feddback_gemini.md
+out
 
 # Editor directories and files
 .vscode/*
