@@ -35,6 +35,7 @@ export function Nav() {
   const links = [
     { label: tr.nav.experience, href: "/#experience" },
     { label: tr.nav.projects, href: "/#projects" },
+    { label: tr.nav.caseStudies, href: "/#case-studies" },
     { label: tr.nav.skills, href: "/#skills" },
     { label: tr.nav.contact, href: "/#contact" },
   ];

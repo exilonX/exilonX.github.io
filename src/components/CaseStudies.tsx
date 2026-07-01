@@ -15,6 +15,18 @@ interface CaseStudyItem {
 
 const caseStudies: CaseStudyItem[] = [
   {
+    slug: "attested-secure-keys",
+    domain: "Mobile Security · Cryptography · Flutter",
+    title: "Attested Secure Keys",
+    color: "#f59e0b",
+    teaserEn:
+      "A Flutter plugin for hardware-backed, non-exportable EC P-256 keys — minted inside Android StrongBox/TEE or the iOS Secure Enclave, with a manufacturer-signed attestation your server can verify. Fills a real gap: no pub.dev package exposed key attestation, and flutter_secure_storage protects data, not keys.",
+    teaserRo:
+      "Un plugin Flutter pentru chei EC P-256 hardware, non-exportabile — generate în Android StrongBox/TEE sau în Secure Enclave-ul iOS, cu o atestare semnată de producător pe care serverul tău o poate verifica. Acoperă un gol real: niciun pachet pub.dev nu expunea atestarea cheilor, iar flutter_secure_storage protejează date, nu chei.",
+    keyStatEn: "EC P-256 · StrongBox / Secure Enclave · 2026",
+    keyStatRo: "EC P-256 · StrongBox / Secure Enclave · 2026",
+  },
+  {
     slug: "agent-commerce",
     domain: "Agent Commerce · AP2 · Cryptography",
     title: "Agent Commerce on AP2",

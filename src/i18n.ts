@@ -5,6 +5,7 @@ const translations = {
     nav: {
       experience: 'Experience',
       projects: 'Projects',
+      caseStudies: 'Case Studies',
       skills: 'Skills',
       contact: 'Contact',
     },
@@ -112,6 +113,7 @@ const translations = {
     nav: {
       experience: 'Experienta',
       projects: 'Proiecte',
+      caseStudies: 'Studii de caz',
       skills: 'Competente',
       contact: 'Contact',
     },
