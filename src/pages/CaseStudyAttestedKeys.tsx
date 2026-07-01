@@ -186,9 +186,8 @@ export function CaseStudyAttestedKeys() {
             it trusts anything signed with it.
           </p>
           <p className="text-text-muted leading-relaxed">
-            This library began as the key layer for an EUDI-wallet proof-of-concept
-            in ROeID (Romania&rsquo;s national electronic-identity app), then
-            generalised so any app needing hardware-backed keys can reuse it.
+            This library began as the key layer for an EUDI-wallet proof-of-concept,
+            then generalised so any app needing hardware-backed keys can reuse it.
           </p>
         </section>
 
