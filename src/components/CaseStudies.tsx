@@ -15,6 +15,18 @@ interface CaseStudyItem {
 
 const caseStudies: CaseStudyItem[] = [
   {
+    slug: "sdjwt-oid4vc",
+    domain: "EUDI Wallet · Verifiable Credentials · Dart",
+    title: "SD-JWT VC + OpenID4VC",
+    color: "#6366f1",
+    teaserEn:
+      "A pure-Dart holder library for SD-JWT Verifiable Credentials over OpenID4VCI/VP — receive, hold, and selectively present EUDI-wallet credentials. Key- and HTTP-agnostic, 100% covered, and verified end-to-end against the EU reference wallet. The protocol companion to Attested Secure Keys.",
+    teaserRo:
+      "O librărie Dart pură pentru rolul de holder — SD-JWT Verifiable Credentials peste OpenID4VCI/VP: primești, deții și prezinți selectiv credențiale de portofel EUDI. Agnostică față de chei și rețea, 100% acoperită de teste și verificată end-to-end cu portofelul de referință EU. Companionul de protocol pentru Attested Secure Keys.",
+    keyStatEn: "SD-JWT VC · OID4VCI/VP · 100% covered · 2026",
+    keyStatRo: "SD-JWT VC · OID4VCI/VP · 100% acoperit · 2026",
+  },
+  {
     slug: "attested-secure-keys",
     domain: "Mobile Security · Cryptography · Flutter",
     title: "Attested Secure Keys",

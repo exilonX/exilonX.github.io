@@ -187,7 +187,13 @@ export function CaseStudyAttestedKeys() {
           </p>
           <p className="text-text-muted leading-relaxed">
             This library began as the key layer for an EUDI-wallet proof-of-concept,
-            then generalised so any app needing hardware-backed keys can reuse it.
+            then generalised so any app needing hardware-backed keys can reuse it. Its
+            protocol companion &mdash; issuance, holding and selective presentation of
+            credentials &mdash; lives in{" "}
+            <a href="/case-study/sdjwt-oid4vc" className="text-primary hover:underline">
+              SD-JWT VC + OpenID4VC
+            </a>
+            .
           </p>
         </section>
 

@@ -12,6 +12,7 @@ import { CaseStudyDiploma } from "./pages/CaseStudyDiploma";
 import { CaseStudyCryptobot } from "./pages/CaseStudyCryptobot";
 import { CaseStudyAgentCommerce } from "./pages/CaseStudyAgentCommerce";
 import { CaseStudyAttestedKeys } from "./pages/CaseStudyAttestedKeys";
+import { CaseStudySdjwtOid4vc } from "./pages/CaseStudySdjwtOid4vc";
 
 type Route =
   | { type: "home" }
@@ -96,6 +97,7 @@ function App() {
     if (route.slug === "cryptobot") return <CaseStudyCryptobot />;
     if (route.slug === "agent-commerce") return <CaseStudyAgentCommerce />;
     if (route.slug === "attested-secure-keys") return <CaseStudyAttestedKeys />;
+    if (route.slug === "sdjwt-oid4vc") return <CaseStudySdjwtOid4vc />;
   }
 
   return (
