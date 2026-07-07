@@ -381,7 +381,11 @@ export function CaseStudySdjwtOid4vc() {
             <a href="/case-study/attested-secure-keys" className="text-primary hover:underline">
               attested_secure_keys
             </a>
-            ; together they form the holder half of an EUDI wallet. Full line coverage,
+            ; together they form the holder half of a{" "}
+            <a href="/case-study/eudi-wallet" className="text-primary hover:underline">
+              working EUDI wallet
+            </a>
+            . Full line coverage,
             clean under a strict lint set, spec-vector conformance, fuzz-tested parsers,
             and CI that pins the minimum SDK so downstream wallets resolve it with no
             overrides. Open source under Apache-2.0.
@@ -415,7 +419,18 @@ export function CaseStudySdjwtOid4vc() {
 
         {/* ---- Links CTA ---- */}
         <section className="mt-14">
-          <div className="grid sm:grid-cols-2 gap-4">
+          <div className="grid sm:grid-cols-3 gap-4">
+            <a
+              href="/case-study/eudi-wallet"
+              className="glass-card rounded-xl p-5 group transition-colors hover:border-primary/50"
+            >
+              <div className="text-xs font-semibold uppercase tracking-wider text-text-faint mb-1">
+                Working wallet
+              </div>
+              <div className="text-text font-semibold group-hover:text-primary transition-colors">
+                See it running &rarr;
+              </div>
+            </a>
             <a
               href={PUB_DEV}
               target="_blank"

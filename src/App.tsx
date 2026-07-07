@@ -13,6 +13,7 @@ import { CaseStudyCryptobot } from "./pages/CaseStudyCryptobot";
 import { CaseStudyAgentCommerce } from "./pages/CaseStudyAgentCommerce";
 import { CaseStudyAttestedKeys } from "./pages/CaseStudyAttestedKeys";
 import { CaseStudySdjwtOid4vc } from "./pages/CaseStudySdjwtOid4vc";
+import { CaseStudyEudiWallet } from "./pages/CaseStudyEudiWallet";
 
 type Route =
   | { type: "home" }
@@ -98,6 +99,7 @@ function App() {
     if (route.slug === "agent-commerce") return <CaseStudyAgentCommerce />;
     if (route.slug === "attested-secure-keys") return <CaseStudyAttestedKeys />;
     if (route.slug === "sdjwt-oid4vc") return <CaseStudySdjwtOid4vc />;
+    if (route.slug === "eudi-wallet") return <CaseStudyEudiWallet />;
   }
 
   return (

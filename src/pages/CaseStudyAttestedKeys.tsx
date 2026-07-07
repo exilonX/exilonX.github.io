@@ -342,7 +342,11 @@ export function CaseStudyAttestedKeys() {
             device-verified &mdash; Android (StrongBox / TEE attestation) on real
             hardware via Firebase Test Lab, and iOS (Secure Enclave + App Attest) on a
             physical iPhone, with the exported Android attestation decoded end-to-end to
-            a genuine Google root. Open source under Apache-2.0.
+            a genuine Google root. It&rsquo;s the key layer of a{" "}
+            <a href="/case-study/eudi-wallet" className="text-primary hover:underline">
+              working EUDI wallet
+            </a>
+            . Open source under Apache-2.0.
           </p>
         </section>
 
@@ -375,7 +379,18 @@ export function CaseStudyAttestedKeys() {
 
         {/* ---- Links CTA ---- */}
         <section className="mt-14">
-          <div className="grid sm:grid-cols-2 gap-4">
+          <div className="grid sm:grid-cols-3 gap-4">
+            <a
+              href="/case-study/eudi-wallet"
+              className="glass-card rounded-xl p-5 group transition-colors hover:border-primary/50"
+            >
+              <div className="text-xs font-semibold uppercase tracking-wider text-text-faint mb-1">
+                Working wallet
+              </div>
+              <div className="text-text font-semibold group-hover:text-primary transition-colors">
+                See it running &rarr;
+              </div>
+            </a>
             <a
               href={PUB_DEV}
               target="_blank"

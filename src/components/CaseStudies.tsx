@@ -15,6 +15,18 @@ interface CaseStudyItem {
 
 const caseStudies: CaseStudyItem[] = [
   {
+    slug: "eudi-wallet",
+    domain: "EUDI Wallet · Verifiable Credentials · Flutter",
+    title: "A working EUDI wallet",
+    color: "#0d9488",
+    teaserEn:
+      "A real EU Digital Identity wallet built from my two libraries — hardware-backed keys and the SD-JWT VC / OpenID4VC holder flow — joined by a 72-line adaptor. It runs the full issue → hold → present journey both offline and against the live EU reference issuer/verifier. The capstone that proves the other two compose.",
+    teaserRo:
+      "Un portofel EU Digital Identity real, construit din cele două librării ale mele — chei hardware și fluxul de holder SD-JWT VC / OpenID4VC — unite printr-un adaptor de 72 de linii. Rulează întregul parcurs primește → deține → prezintă atât offline, cât și cu issuer-ul/verifier-ul de referință EU. Piesa care demonstrează că celelalte două se compun.",
+    keyStatEn: "2 libraries + 72-line glue · live EUDI interop · 2026",
+    keyStatRo: "2 librării + 72 de linii glue · interop EUDI live · 2026",
+  },
+  {
     slug: "sdjwt-oid4vc",
     domain: "EUDI Wallet · Verifiable Credentials · Dart",
     title: "SD-JWT VC + OpenID4VC",
@@ -51,18 +63,6 @@ const caseStudies: CaseStudyItem[] = [
     keyStatRo: "3 tipuri mandate · 3 DIDs · AP2 v0.2 · 2026",
   },
   {
-    slug: "diploma-project",
-    domain: "Digital Identity & Cryptography",
-    title: "The Graph of Romanian Businessmen",
-    color: "#a78bfa",
-    teaserEn:
-      "From 6.8 GB of Romanian Official Gazette PDFs to a searchable graph of ~370,000 people. End-to-end pipeline: extraction, classification, graph construction, Neo4j, SigmaJS visualisation.",
-    teaserRo:
-      "De la 6,8 GB de PDF-uri din Monitorul Oficial la un graf cautabil de ~370.000 de persoane. Pipeline end-to-end: extractie, clasificare, constructie graf, Neo4j, vizualizare SigmaJS.",
-    keyStatEn: "372K+ nodes · 120K components · 2014",
-    keyStatRo: "372K+ noduri · 120K componente · 2014",
-  },
-  {
     slug: "cryptobot",
     domain: "Algorithmic Trading · Research",
     title: "cryptobot",
@@ -73,6 +73,18 @@ const caseStudies: CaseStudyItem[] = [
       "Framework orchestrat de tranzactionare crypto pe Binance — un sandbox pentru arhitectura de strategii cu cifre reale de backtest si o citire onesta a ce inseamna.",
     keyStatEn: "16 strategies · ~78 commits · 2021–2022",
     keyStatRo: "16 strategii · ~78 commit-uri · 2021–2022",
+  },
+  {
+    slug: "diploma-project",
+    domain: "Digital Identity & Cryptography",
+    title: "The Graph of Romanian Businessmen",
+    color: "#a78bfa",
+    teaserEn:
+      "From 6.8 GB of Romanian Official Gazette PDFs to a searchable graph of ~370,000 people. End-to-end pipeline: extraction, classification, graph construction, Neo4j, SigmaJS visualisation.",
+    teaserRo:
+      "De la 6,8 GB de PDF-uri din Monitorul Oficial la un graf cautabil de ~370.000 de persoane. Pipeline end-to-end: extractie, clasificare, constructie graf, Neo4j, vizualizare SigmaJS.",
+    keyStatEn: "372K+ nodes · 120K components · 2014",
+    keyStatRo: "372K+ noduri · 120K componente · 2014",
   },
 ];
 
