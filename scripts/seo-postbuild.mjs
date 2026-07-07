@@ -152,11 +152,16 @@ async function main() {
   // Home: add the font preload (keeps its own title/description/canonical/OG).
   await writeFile(indexPath, base.replace("</head>", () => preload + "  </head>"), "utf8");
 
-  // One static file per case-study route.
+  // One static file per case-study route. Emit <slug>.html (not <slug>/index.html)
+  // so GitHub Pages serves /case-study/<slug> with a 200 — no trailing-slash 301 —
+  // and the served URL matches the no-slash canonical / sitemap / internal links.
+  await mkdir(path.join(dist, "case-study"), { recursive: true });
   for (const cs of caseStudies) {
-    const dir = path.join(dist, "case-study", cs.slug);
-    await mkdir(dir, { recursive: true });
-    await writeFile(path.join(dir, "index.html"), bakeCaseStudy(base, cs, preload), "utf8");
+    await writeFile(
+      path.join(dist, "case-study", `${cs.slug}.html`),
+      bakeCaseStudy(base, cs, preload),
+      "utf8"
+    );
   }
 
   await writeFile(path.join(dist, "sitemap.xml"), buildSitemap(), "utf8");
