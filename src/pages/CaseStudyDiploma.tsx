@@ -527,6 +527,8 @@ function Figure({ src, alt, caption }: { src: string; alt: string; caption: stri
             src={src}
             alt={alt}
             onError={() => setFailed(true)}
+            loading="lazy"
+            decoding="async"
             className="w-full h-auto max-h-[520px] object-contain"
           />
         </div>

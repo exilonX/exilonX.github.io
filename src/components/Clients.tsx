@@ -129,6 +129,8 @@ export function Clients() {
                   <img
                     src={client.logo}
                     alt={client.name}
+                    loading="lazy"
+                    decoding="async"
                     className={`max-h-10 max-w-[120px] object-contain ${client.isPng ? '' : 'dark:brightness-100'}`}
                   />
                 ) : (
@@ -162,6 +164,8 @@ export function Clients() {
                 <img
                   src={p.logo}
                   alt={p.name}
+                  loading="lazy"
+                  decoding="async"
                   className={`max-h-8 max-w-full object-contain ${p.invertOnDark ? 'dark:invert dark:brightness-100' : ''}`}
                 />
               </div>

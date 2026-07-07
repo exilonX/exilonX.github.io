@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, lazy, Suspense, type ComponentType, type LazyExoticComponent } from "react";
 import { Nav } from "./components/Nav";
 import { Hero } from "./components/Hero";
 import { Experience } from "./components/Experience";
@@ -8,12 +8,15 @@ import { CaseStudies } from "./components/CaseStudies";
 import { Skills } from "./components/Skills";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
-import { CaseStudyDiploma } from "./pages/CaseStudyDiploma";
-import { CaseStudyCryptobot } from "./pages/CaseStudyCryptobot";
-import { CaseStudyAgentCommerce } from "./pages/CaseStudyAgentCommerce";
-import { CaseStudyAttestedKeys } from "./pages/CaseStudyAttestedKeys";
-import { CaseStudySdjwtOid4vc } from "./pages/CaseStudySdjwtOid4vc";
-import { CaseStudyEudiWallet } from "./pages/CaseStudyEudiWallet";
+// Case-study pages are code-split — the home bundle no longer ships them.
+const caseStudyPages: Record<string, LazyExoticComponent<ComponentType>> = {
+  "diploma-project": lazy(() => import("./pages/CaseStudyDiploma").then((m) => ({ default: m.CaseStudyDiploma }))),
+  "cryptobot": lazy(() => import("./pages/CaseStudyCryptobot").then((m) => ({ default: m.CaseStudyCryptobot }))),
+  "agent-commerce": lazy(() => import("./pages/CaseStudyAgentCommerce").then((m) => ({ default: m.CaseStudyAgentCommerce }))),
+  "attested-secure-keys": lazy(() => import("./pages/CaseStudyAttestedKeys").then((m) => ({ default: m.CaseStudyAttestedKeys }))),
+  "sdjwt-oid4vc": lazy(() => import("./pages/CaseStudySdjwtOid4vc").then((m) => ({ default: m.CaseStudySdjwtOid4vc }))),
+  "eudi-wallet": lazy(() => import("./pages/CaseStudyEudiWallet").then((m) => ({ default: m.CaseStudyEudiWallet }))),
+};
 
 type Route =
   | { type: "home" }
@@ -94,12 +97,14 @@ function App() {
   }, []);
 
   if (route.type === "case-study") {
-    if (route.slug === "diploma-project") return <CaseStudyDiploma />;
-    if (route.slug === "cryptobot") return <CaseStudyCryptobot />;
-    if (route.slug === "agent-commerce") return <CaseStudyAgentCommerce />;
-    if (route.slug === "attested-secure-keys") return <CaseStudyAttestedKeys />;
-    if (route.slug === "sdjwt-oid4vc") return <CaseStudySdjwtOid4vc />;
-    if (route.slug === "eudi-wallet") return <CaseStudyEudiWallet />;
+    const Page = caseStudyPages[route.slug];
+    if (Page) {
+      return (
+        <Suspense fallback={<div className="min-h-screen bg-bg" />}>
+          <Page />
+        </Suspense>
+      );
+    }
   }
 
   return (
