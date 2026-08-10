@@ -22,14 +22,17 @@ type Route =
   | { type: "home" }
   | { type: "case-study"; slug: string };
 
-function getRoute(): Route {
-  const match = window.location.pathname.match(/^\/case-study\/([^/]+)\/?$/);
+// `pathname` is supplied by the prerenderer (src/entry-server.tsx), which has no
+// `window`. In the browser it's omitted and we read the live location.
+function getRoute(pathname?: string): Route {
+  const path = pathname ?? (typeof window === "undefined" ? "/" : window.location.pathname);
+  const match = path.match(/^\/case-study\/([^/]+)\/?$/);
   if (match) return { type: "case-study", slug: match[1] };
   return { type: "home" };
 }
 
-function App() {
-  const [route, setRoute] = useState<Route>(getRoute);
+function App({ url }: { url?: string }) {
+  const [route, setRoute] = useState<Route>(() => getRoute(url));
 
   // Listen for back/forward navigation
   useEffect(() => {

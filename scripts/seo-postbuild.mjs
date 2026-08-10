@@ -15,7 +15,7 @@
 
 import { readFile, writeFile, mkdir, readdir } from "node:fs/promises";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
@@ -132,6 +132,21 @@ function bakeCaseStudy(base, cs, preload) {
   return html.replace("</head>", () => breadcrumbLd(cs, url) + preload + "  </head>");
 }
 
+// Load the SSR bundle produced by `vite build --ssr src/entry-server.tsx`.
+async function loadRenderer() {
+  const entry = path.join(root, "dist-ssr", "entry-server.js");
+  const mod = await import(pathToFileURL(entry).href);
+  return mod.render;
+}
+
+// Vite emits an empty <div id="root"></div>; swap in the prerendered markup.
+// Function replacer so `$` sequences in the HTML aren't treated as patterns.
+function injectBody(html, markup) {
+  const re = /<div id="root">\s*<\/div>/;
+  if (!re.test(html)) throw new Error('could not find <div id="root"></div> to inject into');
+  return html.replace(re, () => `<div id="root">${markup}</div>`);
+}
+
 function buildSitemap() {
   const row = (loc, lastmod, changefreq, priority) =>
     `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
@@ -148,26 +163,40 @@ async function main() {
   const base = await readFile(indexPath, "utf8");
   const font = await findLatinFont();
   const preload = preloadTag(font);
+  const render = await loadRenderer();
 
-  // Home: add the font preload (keeps its own title/description/canonical/OG).
-  await writeFile(indexPath, base.replace("</head>", () => preload + "  </head>"), "utf8");
+  // Home: font preload + prerendered body (keeps its own title/description/OG).
+  await writeFile(
+    indexPath,
+    injectBody(base.replace("</head>", () => preload + "  </head>"), render("/")),
+    "utf8"
+  );
 
   // One static file per case-study route. Emit <slug>.html (not <slug>/index.html)
   // so GitHub Pages serves /case-study/<slug> with a 200 — no trailing-slash 301 —
   // and the served URL matches the no-slash canonical / sitemap / internal links.
   await mkdir(path.join(dist, "case-study"), { recursive: true });
   for (const cs of caseStudies) {
+    const route = `/case-study/${cs.slug}`;
     await writeFile(
       path.join(dist, "case-study", `${cs.slug}.html`),
-      bakeCaseStudy(base, cs, preload),
+      injectBody(bakeCaseStudy(base, cs, preload), render(route)),
       "utf8"
     );
   }
 
-  await writeFile(path.join(dist, "sitemap.xml"), buildSitemap(), "utf8");
+  // Written to two paths with identical content. Search Console keeps one record
+  // per submitted sitemap URL, and /sitemap.xml's record is wedged in a failed
+  // state: it was first submitted 2026-04-28, when the file genuinely 404'd (the
+  // generator below didn't exist until 2026-07-07). Resubmitting the same path
+  // reuses the poisoned record, so /sitemap-pages.xml exists purely to give GSC a
+  // clean one. robots.txt advertises both; Google de-duplicates by <loc>.
+  const sitemap = buildSitemap();
+  await writeFile(path.join(dist, "sitemap.xml"), sitemap, "utf8");
+  await writeFile(path.join(dist, "sitemap-pages.xml"), sitemap, "utf8");
 
   console.log(
-    `[seo-postbuild] ${caseStudies.length} case-study pages prerendered · sitemap + font preload written (font: ${font || "NOT FOUND"})`
+    `[seo-postbuild] ${caseStudies.length} case-study pages prerendered · sitemap.xml + sitemap-pages.xml + font preload written (font: ${font || "NOT FOUND"})`
   );
 }
 

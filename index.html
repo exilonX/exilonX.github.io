@@ -9,7 +9,9 @@
     <title>Ionel Merca — Backend Engineer · Node.js Microservices, Distributed Systems</title>
     <meta name="description" content="Senior backend engineer in Bucharest, Romania. Node.js microservices and distributed systems — 10 years shipping production across payments, identity, IoT, and government. Available for contract work." />
     <meta name="author" content="Ionel Merca" />
-    <meta name="keywords" content="Ionel Merca, backend engineer, Node.js engineer, NestJS developer, microservices engineer, distributed systems engineer, Kafka engineer, system design engineer, API design, software engineer Bucharest, freelance software engineer Romania, contract backend engineer Europe, senior backend engineer remote, event-driven systems, scalable backend systems, payment systems engineer, VTEX developer, Adyen integration, marketplace split payments, Romanian eID developer, PACE protocol, eIDAS QES, MRTD, NFC cryptography, IoT MQTT engineer" />
+    <!-- Deliberately no keywords meta tag: Google has ignored it since 2009 and a
+         stuffed list is a weak spam signal elsewhere. Keywords earn their keep in
+         the title, headings, body prose, and URL slugs instead. -->
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="googlebot" content="index, follow" />
 
@@ -36,6 +38,11 @@
     <meta name="twitter:title" content="Ionel Merca — Backend Engineer · Node.js Microservices, Distributed Systems" />
     <meta name="twitter:description" content="10 years building Node.js microservices and distributed systems — payments, identity, IoT, government. Bucharest, Romania. Available for contract work." />
     <meta name="twitter:image" content="https://exilonx.github.io/og-image.png" />
+
+    <!-- The body is prerendered, but .fade-in starts at opacity:0 and only gets
+         .visible from the IntersectionObserver in useFadeIn. Without JS that would
+         leave real content invisible, so reveal it up front in that case. -->
+    <noscript><style>.fade-in{opacity:1 !important;transform:none !important}</style></noscript>
 
     <!-- Theme -->
     <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
@@ -142,7 +149,8 @@
         }
       },
       "sameAs": [
-        "https://github.com/exilonX"
+        "https://github.com/exilonX",
+        "https://www.kaggle.com/exilonx"
       ]
     }
     </script>
@@ -213,16 +221,10 @@
     </script>
   </head>
   <body>
+    <!-- Filled at build time by scripts/seo-postbuild.mjs with the real rendered
+         page. The <noscript> summary that used to live here is gone: it existed
+         only because the body was empty, and it duplicated the H1. -->
     <div id="root"></div>
-    <noscript>
-      <div style="padding: 2rem; font-family: system-ui, sans-serif; max-width: 720px; margin: 0 auto;">
-        <h1>Ionel Merca — Backend Software Engineer</h1>
-        <p>Senior backend engineer building Node.js microservices and distributed systems. 10 years of production work across payments, digital identity, IoT, and government.</p>
-        <p>Bucharest, Romania. Available for contract work.</p>
-        <p>Contact: <a href="mailto:ionel.merca@gmail.com">ionel.merca@gmail.com</a> · <a href="https://github.com/exilonX">GitHub: exilonX</a></p>
-        <p><em>This portfolio requires JavaScript to render the interactive version. The full content is available with JS enabled.</em></p>
-      </div>
-    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
