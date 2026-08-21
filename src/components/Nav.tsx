@@ -55,7 +55,7 @@ export function Nav() {
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#" className="text-xl font-bold text-gradient">
+        <a href="/" className="text-xl font-bold text-gradient">
           IM
         </a>
 

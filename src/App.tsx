@@ -90,7 +90,9 @@ function App({ url }: { url?: string }) {
             document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
           });
         });
-      } else if (!samePath) {
+      } else {
+        // No hash: always return to the top. Covers both a real route change
+        // and the same-path case (clicking the logo while already on home).
         window.scrollTo(0, 0);
       }
     };
