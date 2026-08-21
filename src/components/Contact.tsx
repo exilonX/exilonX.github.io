@@ -9,7 +9,7 @@ export function Contact() {
   const ref = useFadeIn<HTMLElement>();
 
   return (
-    <section id="contact" className="py-24 px-6 relative overflow-hidden fade-in" ref={ref}>
+    <section id="contact" className="py-16 md:py-24 px-6 relative overflow-hidden fade-in" ref={ref}>
       {/* Background glow */}
       <div
         className="glow-orb w-[400px] h-[400px] top-0 left-1/2 -translate-x-1/2"

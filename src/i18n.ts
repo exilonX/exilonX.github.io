@@ -176,8 +176,8 @@ const translations = {
         'Sisteme in productie procesand date reale, bani reali, identitati reale',
     },
     caseStudies: {
-      label: 'Analize',
-      title: 'Case Studies',
+      label: 'Analiza',
+      title: 'Studii de caz',
       subtitle:
         'Analize detaliate ale unor proiecte — arhitectura, cifre si ce nu a functionat.',
       readMore: 'Citeste',

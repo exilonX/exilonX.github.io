@@ -94,7 +94,7 @@ export function CaseStudies() {
   const ref = useFadeIn<HTMLElement>();
 
   return (
-    <section id="case-studies" className="py-24 px-6 fade-in" ref={ref}>
+    <section id="case-studies" className="py-16 md:py-24 px-6 fade-in" ref={ref}>
       <div className="max-w-6xl mx-auto">
         <div className="section-label">{tr.caseStudies.label}</div>
         <h2 className="text-3xl md:text-5xl font-bold text-text mb-2">
