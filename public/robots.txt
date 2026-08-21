@@ -2,5 +2,5 @@ User-agent: *
 Allow: /
 
 # Sitemaps — identical content, two paths. See scripts/seo-postbuild.mjs for why.
-Sitemap: https://exilonx.github.io/sitemap.xml
-Sitemap: https://exilonx.github.io/sitemap-pages.xml
+Sitemap: https://ionelmerca.com/sitemap.xml
+Sitemap: https://ionelmerca.com/sitemap-pages.xml

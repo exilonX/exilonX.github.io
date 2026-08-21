@@ -53,7 +53,7 @@ export function CaseStudyAttestedKeys() {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    const url = "https://exilonx.github.io/case-study/attested-secure-keys";
+    const url = "https://ionelmerca.com/case-study/attested-secure-keys";
     const title = "Attested Secure Keys — Case Study · Ionel Merca";
     const description =
       "A Flutter plugin for hardware-backed, non-exportable EC P-256 keys (Android StrongBox/TEE, iOS Secure Enclave) with a server-verifiable manufacturer attestation — built for EUDI-wallet-grade apps.";
@@ -81,8 +81,8 @@ export function CaseStudyAttestedKeys() {
       alternativeHeadline:
         "Non-exportable EC P-256 keys minted inside the device's secure hardware, with a manufacturer-signed attestation your server can verify",
       description,
-      author: { "@type": "Person", name: "Ionel Merca", url: "https://exilonx.github.io/" },
-      publisher: { "@type": "Person", name: "Ionel Merca", url: "https://exilonx.github.io/" },
+      author: { "@type": "Person", name: "Ionel Merca", url: "https://ionelmerca.com/" },
+      publisher: { "@type": "Person", name: "Ionel Merca", url: "https://ionelmerca.com/" },
       datePublished: "2026-06-26",
       dateModified: "2026-06-26",
       mainEntityOfPage: url,

@@ -51,7 +51,7 @@ export function CaseStudyEudiWallet() {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    const url = "https://exilonx.github.io/case-study/eudi-wallet";
+    const url = "https://ionelmerca.com/case-study/eudi-wallet";
     const title = "EUDI Wallet — Case Study · Ionel Merca";
     const description =
       "A working EU Digital Identity wallet built from two of my own libraries — hardware-backed keys (attested_secure_keys) and the SD-JWT VC / OpenID4VC holder flow (sdjwt_oid4vc) — joined by a 72-line adaptor. Runs the full issue → hold → present journey against a mock backend and the live EU reference issuer/verifier.";
@@ -79,8 +79,8 @@ export function CaseStudyEudiWallet() {
       alternativeHeadline:
         "Hardware-backed keys + the SD-JWT VC / OpenID4VC holder flow, joined by a 72-line adaptor, running against the live EU reference issuer and verifier",
       description,
-      author: { "@type": "Person", name: "Ionel Merca", url: "https://exilonx.github.io/" },
-      publisher: { "@type": "Person", name: "Ionel Merca", url: "https://exilonx.github.io/" },
+      author: { "@type": "Person", name: "Ionel Merca", url: "https://ionelmerca.com/" },
+      publisher: { "@type": "Person", name: "Ionel Merca", url: "https://ionelmerca.com/" },
       datePublished: "2026-07-06",
       dateModified: "2026-07-06",
       mainEntityOfPage: url,

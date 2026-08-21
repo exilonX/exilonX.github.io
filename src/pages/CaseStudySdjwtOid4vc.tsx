@@ -59,7 +59,7 @@ export function CaseStudySdjwtOid4vc() {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    const url = "https://exilonx.github.io/case-study/sdjwt-oid4vc";
+    const url = "https://ionelmerca.com/case-study/sdjwt-oid4vc";
     const title = "SD-JWT VC + OpenID4VC — Case Study · Ionel Merca";
     const description =
       "A pure-Dart holder library for SD-JWT Verifiable Credentials + OpenID4VCI/OpenID4VP — receive, hold, and selectively present EUDI-wallet credentials. Key- and HTTP-agnostic, 100% covered, verified against the EU reference wallet.";
@@ -87,8 +87,8 @@ export function CaseStudySdjwtOid4vc() {
       alternativeHeadline:
         "Receive, hold, and selectively present SD-JWT Verifiable Credentials over OpenID4VCI / OpenID4VP — key- and HTTP-agnostic",
       description,
-      author: { "@type": "Person", name: "Ionel Merca", url: "https://exilonx.github.io/" },
-      publisher: { "@type": "Person", name: "Ionel Merca", url: "https://exilonx.github.io/" },
+      author: { "@type": "Person", name: "Ionel Merca", url: "https://ionelmerca.com/" },
+      publisher: { "@type": "Person", name: "Ionel Merca", url: "https://ionelmerca.com/" },
       datePublished: "2026-07-03",
       dateModified: "2026-07-03",
       mainEntityOfPage: url,

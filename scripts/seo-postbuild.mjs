@@ -19,8 +19,8 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
-const ORIGIN = "https://exilonx.github.io";
-const HOME_LASTMOD = "2026-07-06";
+const ORIGIN = "https://ionelmerca.com";
+const HOME_LASTMOD = "2026-08-19";
 
 const caseStudies = [
   {

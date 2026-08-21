@@ -6,7 +6,7 @@ export function CaseStudyDiploma() {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    const url = "https://exilonx.github.io/case-study/diploma-project";
+    const url = "https://ionelmerca.com/case-study/diploma-project";
     const title = "The Graph of Romanian Businessmen — Case Study · Ionel Merca";
     const description =
       "Bachelor's diploma project: extraction, analysis, and visualisation of Romania's business-ownership network. From 6.8 GB of Official Gazette PDFs to a searchable graph of ~370,000 people.";
@@ -35,8 +35,8 @@ export function CaseStudyDiploma() {
       headline: "The Graph of Romanian Businessmen",
       alternativeHeadline: "Extraction, analysis, and visualisation of Romania's business-ownership network",
       description,
-      author: { "@type": "Person", name: "Ionel Merca", url: "https://exilonx.github.io/" },
-      publisher: { "@type": "Person", name: "Ionel Merca", url: "https://exilonx.github.io/" },
+      author: { "@type": "Person", name: "Ionel Merca", url: "https://ionelmerca.com/" },
+      publisher: { "@type": "Person", name: "Ionel Merca", url: "https://ionelmerca.com/" },
       datePublished: "2014-06-01",
       dateModified: "2026-04-22",
       mainEntityOfPage: url,
@@ -249,7 +249,7 @@ export function CaseStudyDiploma() {
             Twelve years on, most of the core picks still look right: Python for text wrangling, MongoDB for flat records, Neo4j for the graph itself, a thin service layer between the database and the browser. What dates: Java Servlets as a choice (now a heavy pick for what this does), SigmaJS (newer renderers are cleaner), and the PHP proxy. The actual hard problem &mdash; structured extraction from poorly-OCR&rsquo;d legal PDFs in a non-English language &mdash; is still hard, and is arguably LLM-shaped today.
           </p>
           <p className="text-text-muted leading-relaxed">
-            The interactive demo lived at <span className="text-text">exilonx.github.io</span> &mdash; the same domain this portfolio now occupies. Between then and now the page sat blank.
+            The interactive demo lived at <span className="text-text">ionelmerca.com</span> &mdash; the same domain this portfolio now occupies. Between then and now the page sat blank.
           </p>
         </section>
 

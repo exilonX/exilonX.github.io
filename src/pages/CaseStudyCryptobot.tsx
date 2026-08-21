@@ -6,7 +6,7 @@ export function CaseStudyCryptobot() {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    const url = "https://exilonx.github.io/case-study/cryptobot";
+    const url = "https://ionelmerca.com/case-study/cryptobot";
     const title = "cryptobot — Case Study · Ionel Merca";
     const description =
       "Personal exploration of systematic crypto trading on Binance — orchestrated execution framework with 16 strategies, Redis-backed backtesting, and an honest read on the results.";
@@ -36,8 +36,8 @@ export function CaseStudyCryptobot() {
       alternativeHeadline:
         "An orchestrator pattern with 16 pluggable strategies, Redis-backed backtesting, and a research-grade honest read on results",
       description,
-      author: { "@type": "Person", name: "Ionel Merca", url: "https://exilonx.github.io/" },
-      publisher: { "@type": "Person", name: "Ionel Merca", url: "https://exilonx.github.io/" },
+      author: { "@type": "Person", name: "Ionel Merca", url: "https://ionelmerca.com/" },
+      publisher: { "@type": "Person", name: "Ionel Merca", url: "https://ionelmerca.com/" },
       datePublished: "2022-02-01",
       dateModified: "2026-04-24",
       mainEntityOfPage: url,

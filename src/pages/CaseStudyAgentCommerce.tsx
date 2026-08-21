@@ -6,7 +6,7 @@ export function CaseStudyAgentCommerce() {
   useEffect(() => {
     window.scrollTo(0, 0)
 
-    const url = 'https://exilonx.github.io/case-study/agent-commerce'
+    const url = 'https://ionelmerca.com/case-study/agent-commerce'
     const title = 'Agent Commerce on AP2 — Case Study · Ionel Merca'
     const description =
       'Production-grade AP2 implementation for agent-mediated payments — cryptographically signed mandates (Ed25519 / JCS / did:web), three-party trust chain, RAG-powered shopping assistant. Showcased on VTEX; backend-agnostic by design.'
@@ -38,12 +38,12 @@ export function CaseStudyAgentCommerce() {
       author: {
         '@type': 'Person',
         name: 'Ionel Merca',
-        url: 'https://exilonx.github.io/',
+        url: 'https://ionelmerca.com/',
       },
       publisher: {
         '@type': 'Person',
         name: 'Ionel Merca',
-        url: 'https://exilonx.github.io/',
+        url: 'https://ionelmerca.com/',
       },
       datePublished: '2026-05-14',
       dateModified: '2026-05-15',

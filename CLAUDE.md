@@ -1,6 +1,8 @@
 # Portfolio — Ionel Merca
 
-Personal engineering portfolio. Deployed target: `exilonX.github.io` (GitHub Pages).
+Personal engineering portfolio. Live at **https://ionelmerca.com** — GitHub Pages
+serving a custom domain. Repo is still named `exilonX/exilonX.github.io`, and
+`exilonx.github.io` 301-redirects to the custom domain.
 
 Inspired by [santifer.io](https://santifer.io/en) ([source](https://github.com/santifer/cv-santiago)).
 
@@ -8,6 +10,8 @@ Inspired by [santifer.io](https://santifer.io/en) ([source](https://github.com/s
 
 - **React 19** + **TypeScript** + **Vite 6** (Node 20.18 — can't go higher without Vite 8 needing Node 20.19+)
 - **Tailwind CSS v3** (PostCSS plugin, not the v4 Vite plugin)
+- **Prerendered (SSG), then hydrated** — the build server-renders every route into
+  static HTML. `dist/` is not an empty SPA shell. See [SEO & Prerendering](#seo--prerendering).
 - **No router** — single page, anchor-based navigation
 - **No state lib** — `useState` + React Context for theme/lang
 - **No animation lib** — plain CSS transitions + IntersectionObserver for fade-ins
@@ -15,26 +19,94 @@ Inspired by [santifer.io](https://santifer.io/en) ([source](https://github.com/s
 ## Commands
 
 ```bash
-npm run dev     # dev server at http://localhost:5173
-npm run build   # production build to dist/
+npm run dev     # dev server at http://localhost:5173 (no prerender — #root is empty)
+npm run build   # three phases, see below
 npm run preview # preview the production build
+npm run lint    # eslint
 ```
+
+`npm run build` runs three phases in order — all three are required, and the
+postbuild fails loudly if the SSR bundle is missing:
+
+1. `tsc -b && vite build` — type-check, then the client bundle → `dist/`
+2. `vite build --ssr src/entry-server.tsx --outDir dist-ssr` — the server bundle
+3. `node scripts/seo-postbuild.mjs` — renders each route via the server bundle,
+   injects the HTML into `<div id="root">`, bakes per-route `<head>` tags, and
+   writes the sitemaps
+
+The SSR build prints "dynamically imported … but also statically imported"
+warnings for each case-study page. These are expected — `dist-ssr/` never reaches
+a browser, and the client keeps its code-splitting.
 
 ## Deployment
 
-Live on `exilonX.github.io` (GitHub Pages) via **`.github/workflows/deploy.yml`** —
-push to the default branch builds and publishes `dist/`. Deep links work through
-the `public/404.html` → `index.html` SPA-redirect pair (needed because Pages has
-no server-side routing).
+Live on **ionelmerca.com** (GitHub Pages, custom domain) via
+**`.github/workflows/deploy.yml`** — push to `portfolio`, `master`, or `main`
+builds and publishes `dist/`.
+
+`public/CNAME` holds the domain and must stay: it ships into `dist/` on every
+build, and GitHub reads it to keep the custom domain bound. Deleting it reverts
+the site to `exilonx.github.io`.
+
+The old host 301-redirects with the path preserved
+(`exilonx.github.io/case-study/x` → `ionelmerca.com/case-study/x`), which is what
+carries the pre-migration inbound links over. Cloudflare DNS: four A records on
+the apex + a `www` CNAME, all **DNS-only / grey cloud** — proxying breaks
+GitHub's Let's Encrypt renewal.
+
+Each `/case-study/<slug>` is emitted as a real `<slug>.html` file, so Pages serves
+it with a 200 and no trailing-slash redirect. The `public/404.html` → `index.html`
+SPA-redirect pair is still there as a fallback for any unknown path.
+
+## SEO & Prerendering
+
+Added 2026-08 after Search Console showed 1 of 7 pages indexed and near-zero
+traffic. Root cause: the served HTML was 55 words and contained **two** links, so
+crawlers had no content and no path to the case studies.
+
+**How prerendering works**
+
+- `src/entry-server.tsx` — the SSR entry. Holds an **eager** import map of the
+  case-study pages. `App.tsx` loads them with `React.lazy`, and `renderToString`
+  does not await lazy imports — rendering `<App/>` for a case-study route would
+  emit only the empty `<Suspense>` fallback. This file exists to avoid that.
+- `src/main.tsx` — `hydrateRoot` when `#root` has server content, `createRoot`
+  when it's empty. The branch is what keeps `npm run dev` working.
+- `src/context.tsx` — two-pass render. `localStorage` / `navigator` / `matchMedia`
+  are read in a post-mount effect, never in a `useState` initializer, so the
+  browser's first render matches the prerendered HTML. Server defaults are
+  `SSR_LANG = "en"` and `SSR_DARK = true`; changing either desyncs hydration.
+- `index.html` — a `<noscript>` style block forces `.fade-in` visible, since
+  without JS the IntersectionObserver never adds `.visible`.
+
+**Decisions worth not re-litigating**
+
+- **No `<meta name="keywords">`.** Google has ignored it since 2009. The same
+  terms live in the Person JSON-LD `knowsAbout` array, which is machine-read.
+- **No `hreflang` on `?lang=en` / `?lang=ro`.** Both URLs serve byte-identical
+  HTML (the language swap is client-side), so declaring them as translations
+  would be a false signal. Only add hreflang if a real prerendered `/ro/` route
+  ships. The canonical already absorbs the duplication.
+- **`?lang=` is written only on an explicit toggle**, never on load. Doing it on
+  load minted `/?lang=en` and `/?lang=ro` as separate crawlable URLs — both are
+  in Search Console as duplicates of `/`.
+- **Two sitemaps, identical content.** `sitemap.xml` and `sitemap-pages.xml`.
+  Search Console keeps one record per submitted URL and `/sitemap.xml`'s record
+  has been stuck on "couldn't fetch" since it was first submitted (2026-04-28)
+  while the file genuinely 404'd. The second path exists to give GSC a clean
+  record. Both are generated by `seo-postbuild.mjs`; neither is in `public/`.
 
 ## Structure
 
 ```
 src/
   App.tsx                 # hand-rolled routing (no router): home vs /case-study/<slug>.
+                          #   takes an optional `url` prop so the prerenderer can pass a path.
                           #   home order: Nav → Hero → Experience → Projects → CaseStudies → Skills → Clients → Contact → Footer
-  main.tsx                # entry; applies theme class before first paint (no FOUC)
-  context.tsx             # AppProvider: lang (en/ro) + dark theme, both persisted to localStorage
+  main.tsx                # client entry; theme class before first paint (no FOUC); hydrate vs create
+  entry-server.tsx        # SSR entry — eager page imports + render(pathname). Not shipped to the browser.
+  context.tsx             # AppProvider: lang (en/ro) + dark theme. Two-pass: SSR defaults first,
+                          #   real prefs adopted in a post-mount effect (hydration safety)
   i18n.ts                 # all UI strings in EN + RO (typed)
   index.css               # theme vars (HSL), dot-grid, glow-orbs, glass-card, fade-in animations
   data/portfolio.ts       # experiences, projects (7), skillGroups, socialLinks
@@ -50,14 +122,29 @@ src/
     Contact.tsx
     Footer.tsx
   pages/                  # full case-study pages (English-only, self-contained, own SEO + inline SVG diagrams)
-    CaseStudySdjwtOid4vc.tsx · CaseStudyAttestedKeys.tsx · CaseStudyAgentCommerce.tsx
-    CaseStudyCryptobot.tsx · CaseStudyDiploma.tsx
+    CaseStudyEudiWallet.tsx · CaseStudySdjwtOid4vc.tsx · CaseStudyAttestedKeys.tsx
+    CaseStudyAgentCommerce.tsx · CaseStudyCryptobot.tsx · CaseStudyDiploma.tsx
+scripts/seo-postbuild.mjs # prerender + per-route <head> + sitemap generation. Owns the
+                          #   `caseStudies` array that drives titles, descriptions and sitemap rows.
 public/logos/             # real client/provider logos (SVG + one PNG for VTEX)
-public/404.html           # gh-pages SPA deep-link redirect (paired with a restore script in index.html)
-public/sitemap.xml        # home + one entry per /case-study/<slug>
+public/404.html           # gh-pages SPA deep-link fallback (paired with a restore script in index.html)
+public/robots.txt         # allows all; advertises both sitemaps
+
+dist/                     # build output (git-ignored)
+  index.html              #   prerendered, ~2.8k words
+  case-study/<slug>.html  #   one prerendered file per case study
+  sitemap.xml             #   GENERATED — not in public/
+  sitemap-pages.xml       #   GENERATED — identical content, second path (see SEO section)
+dist-ssr/entry-server.js  # SSR bundle (git-ignored); consumed by seo-postbuild.mjs
 ```
 
-**Adding a case study** is a 4-edit recipe (page in `pages/` + route in `App.tsx` + card in `CaseStudies.tsx` + `sitemap.xml`) — see [CONTEXT.md § Case Studies System](./CONTEXT.md#case-studies-system). `CaseStudyAttestedKeys.tsx` / `CaseStudySdjwtOid4vc.tsx` are the reference templates.
+**Adding a case study** is now a **5-edit** recipe — see [CONTEXT.md § Case Studies System](./CONTEXT.md#case-studies-system). `CaseStudyAttestedKeys.tsx` / `CaseStudySdjwtOid4vc.tsx` are the reference templates.
+
+> **The easy one to miss is `src/entry-server.tsx`.** Skip it and the page still
+> builds, still routes, and still looks right in the browser — but its static HTML
+> prerenders **empty**, which is invisible until Search Console stops indexing it.
+> After adding a case study, verify:
+> `grep -c '<h1' dist/case-study/<slug>.html` → 1, and the file should be tens of KB, not ~11 KB.
 
 ## Design System
 
@@ -92,7 +179,17 @@ All auto-memory files cover the substance:
 
 ## Open Items
 
-- Deployment to GitHub Pages
+- **Verified pub.dev publisher** — now possible on `ionelmerca.com`. Currently an
+  "unverified uploader", so the packages have no publisher page.
+- **Watch Search Console** — track the new `ionelmerca.com` property. The number
+  that matters is Indexare → Pagini → "Indexate" (was 1 of 7 on the old host).
+  Google had not recrawled since 2026-07-17, so the prerendering work shipped on
+  2026-08-10 was still unseen at migration time.
+- **Update `homepage:` in both pubspec.yaml files on the next real release** —
+  they point at `exilonx.github.io` case-study URLs, which 301 correctly. Not
+  worth a version bump on its own.
 - Replace SVG wordmarks for ING, P24, Netopia, Mokka, TBI, Checkout.com with official logos if they become available
 - Polish pass on spacing/typography
 - Possible add-ons discussed: AI chatbot ("ask me anything"), architecture diagrams, blog, analytics dashboard
+
+_(Deployment to GitHub Pages is done — `.github/workflows/deploy.yml`.)_
